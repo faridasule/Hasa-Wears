@@ -1,0 +1,89 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  // margin-top: 5.9rem;
+
+  h4 {
+    margin: 1rem 0;
+    font-size: 2rem!important;
+    color: #252C32 !important;
+    font-weight: 600 !important;
+  }
+
+  .category, .brand {
+    div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+
+      input[type="checkbox"] {
+        margin-right: 1rem;
+        font-size: 18rem !important;
+      }
+
+
+      label {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .price {
+    input[type="range"] {
+      width: 80%;
+      margin-top: 1rem;
+    }
+
+    /* For Webkit (Chrome, Safari, Opera) */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #eee; /* Set your desired track color */
+  border-radius: 10px;
+}
+
+/* For Firefox */
+input[type="range"]::-moz-range-track {
+  background: #eee; /* Set your desired track color */
+}
+
+/* For Internet Explorer */
+input[type="range"]::-ms-track {
+  background: #eee; /* Set your desired track color */
+}
+  }
+
+  button {
+    background: #007AFF !important;
+    // border: 1px solid var(--color-danger);
+    color: #fff !important;
+    padding: 0.5rem 1rem;
+    width: 80%!important;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .filter {
+    padding-left: 1rem;
+
+    .category, .brand {
+      div {
+        input[type="checkbox"] {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .price {
+      input[type="range"] {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.active {
+  background-color: var(--color-primary);
+  color: white;
+}

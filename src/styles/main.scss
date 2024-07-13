@@ -1,0 +1,15 @@
+@import 'partials/variables';
+@import 'partials/mixins';
+@import 'partials/header';
+
+body {
+  font-family: $font-stack;
+  background-color: #f4f4f4;
+  color: #333;
+
+  .container {
+    @include border-radius(10px);
+    padding: 20px;
+    background: white;
+  }
+}

@@ -1,0 +1,150 @@
+.logo a h2 {
+  width: 30%;
+  color: var(--color-primary) !important;
+  text-align: left;
+  font-size: 28px !important;
+
+  cursor: pointer;
+  span {
+    color: #fff !important;
+      font-size: 28px !important;
+
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 20px;
+    background-color: #1d2939;
+
+    .footer-column {
+      flex: 1;
+      margin: 0 10px;
+
+      h2,
+      h3 {
+        margin-bottom: 10px;
+        color: #98a2b3;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      p,
+      ul {
+        margin: 0;
+        color: #eaecf0;
+        font-weight: 400 !important;
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        li {
+          margin-bottom: 5px;
+          color: #eaecf0;
+        }
+
+        a {
+          text-decoration: none;
+          color: #eaecf0;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #101828;
+    padding: 28px 30px 28px 20px;
+
+    p {
+      margin: 0;
+      color: #98a2b3;
+    }
+
+    .socials-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -50px;
+        margin-right: 35px;
+        background-color: var(--color-primary);
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          color: #fff;
+        }
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 10px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+          color: #98a2b3;
+
+          &:hover {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .logo a h2 {
+    font-size: 30px !important;
+
+    span {
+      color: #fff !important;
+      font-size: 20px !important;
+    }
+  }
+  .footer {
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .footer {
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+}

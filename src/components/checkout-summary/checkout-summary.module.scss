@@ -1,0 +1,76 @@
+.card {
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  // border: 1px solid var(--light-blue);
+  margin-bottom: 5px;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: #F5F5F5 !important;
+  display: flex;
+  gap: 16px
+}
+.heading {
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  margin-bottom: 18px;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+p{
+  color: #9AA6AC;
+}
+.image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover; /* This maintains the aspect ratio and fills the given dimension */
+}
+
+   .summary {
+      margin-top: 2rem;
+      background-color: #f5f5f5;
+      border-radius: 10px !important;
+      width: 40% ;
+      padding: 1rem;
+
+      .sub-summary {
+        div {
+          display: flex;
+          justify-content: space-between;
+                width: 100%;
+
+        }
+      }
+
+      .cardSummary {
+        box-shadow: none !important;
+        flex-direction: column;
+
+        .text {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #e5e9eb;
+          padding: 14px 0;
+
+          h3,
+          h4 {
+            color: #000000 !important;
+            font-weight: 600 !important;
+            font-size: 16px !important;
+          }
+        }
+
+        button {
+          margin-top: 5px;
+        }
+      }
+
+   
+    }
+  
