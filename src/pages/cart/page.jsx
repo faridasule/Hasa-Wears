@@ -21,6 +21,7 @@ import { CiShoppingCart } from 'react-icons/ci'
 import { setBreadCrumb } from '../../redux/features/siteSlice'
 import BreadCrumbLayout from '../../components/bread-crumb/index'
 import { ChevronDownIcon, ChevronRightIcon } from 'evergreen-ui'
+import { capitalizeWords } from '../../@core/utils'
 
 const Cart = () => {
   const cartItems = useSelector(selectCartItems)
@@ -127,7 +128,9 @@ const Cart = () => {
                         <th>Product</th>
                                                 <th>Name</th>
 
-                    <th className={styles.hideOnMobile}>Price</th>
+                        <th className={styles.hideOnMobile}>Price</th>
+                                            <th className={styles.hideOnMobile}>Size</th>
+
                     <th className={styles.hideOnMobile}>Quantity</th>
                     <th className={styles.hideOnMobile}>Total</th>
                     <th>Action</th>
@@ -136,7 +139,7 @@ const Cart = () => {
                 </thead>
                 <tbody>
                   {cartItems.map((cart, index) => {
-                    const { id, name, price, imageURL, cartQuantity } = cart
+                    const { id, name, price, imageURL, cartQuantity, sizes } = cart
                     return (
                       <React.Fragment key={id}>
                         <tr className={styles.productRow}>
@@ -159,6 +162,8 @@ const Cart = () => {
                           <td className={styles.hideOnMobile}>
                             {formatNaira(price)}
                           </td>
+                                                                              <td>{capitalizeWords( sizes.join(', '))}</td>
+
                           <td className={styles.hideOnMobile}>
                             <div className={styles.count}>
                               <button

@@ -3,9 +3,8 @@
 }
 
 .section {
-  padding: 20px 100px 500px 100px;
-  height: 100svh;
-  height: 100%;
+  padding: 20px 100px 200px 100px;
+  // height: 100%;
 
 
 
@@ -88,15 +87,22 @@
           margin-bottom: 18px;
           font-weight: 500;
           font-size: 18px;
-          margin-top: 36px;
+          margin-top: 30px;
         }
 
         p {
-          font-size: 16px;
+          font-size: 14px;
+          color: #252C32;
+          font-weight: 400;
+          padding-bottom: 6px;
+
         }
 
         .qty {
-          margin-top: 24px;
+          margin-top: 18px;
+          color: #252C32;
+          font-size: 14px;
+          font-weight: 700;
         }
 
         .count {
@@ -155,6 +161,36 @@ border-bottom: 1px solid #B0BABF;
   }
 }
 
+.selected{
+  background-color: green ;
+}
+.sizes{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  ul{
+    display: flex;
+    gap:10px;
+    li{
+      list-style: none;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #F6F8F9;
+      color: #000;
+      font-size: 16px;
+      border-radius: 4px;
+
+    }
+  }
+}
+
+.sizes li.selected {
+  background-color: #E5E9EB;
+  border: 1px solid #E5E9EB;
+}
 @media screen and (max-width: 1024px) {
 
 .bread-crumb{

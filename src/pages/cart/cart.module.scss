@@ -6,12 +6,12 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  padding-left: 100px;
+  padding-left: 70px;
   gap: 28px;
 
   .table-content {
     display: flex;
-    width: 86%;
+    width: 95%;
     gap: 100px;
     height: auto;
 div{
@@ -48,14 +48,16 @@ width: 100%;
         td:nth-child(5),
                 td:nth-child(6),
 
-        td:nth-child(7) {
+        td:nth-child(7),
+                 td:nth-child(8)
+{
           padding-top: 24px;
         }
-        td:nth-child(7) {
+        td:nth-child(8) {
           text-align: center;
         }
 
-        td:nth-child(8) {
+        td:nth-child(9) {
           display: none;
         }
 
@@ -242,6 +244,7 @@ section {
         td:nth-child(4),
         td:nth-child(5),
                 td:nth-child(6),
+                td:nth-child(8),
 
         td:nth-child(7) {
           display: none;
@@ -251,7 +254,7 @@ section {
 .icons{
   display: none !important;
 }
-        td:nth-child(8) {
+        td:nth-child(9) {
           display: block !important;
           text-align: right;
 

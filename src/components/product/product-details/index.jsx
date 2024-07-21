@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import spinnerImg from "../../../assets/spinner.jpg";
 import {
   ADD_TO_CART,
   CALCULATE_TOTAL_QUANTITY,
@@ -21,10 +20,12 @@ import { setBreadCrumb } from "../../../redux/features/siteSlice";
 import BreadCrumbLayout from "../../bread-crumb";
 import { FaHeart } from "react-icons/fa";
 import Loader from "../../content-loader";
+import { capitalizeWords } from "../../../@core/utils";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [selectedSizes, setSelectedSizes] = useState([]);
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const wishlistItems = useSelector(selectWishlistItems);
@@ -39,6 +40,7 @@ const ProductDetails = () => {
     { title: "Product", url: "/#product" },
     { title: "Product Details" },
   ];
+  
   useEffect(() => {
     dispatch(setBreadCrumb(breadcrumb));
   }, [dispatch]);
@@ -47,8 +49,9 @@ const ProductDetails = () => {
     setProduct(document);
   }, [document]);
 
-  const addToCart = (product) => {
-    dispatch(ADD_TO_CART(product));
+  const addToCart = (product, sizes) => {
+    const productWithSizes = { ...product, sizes };
+    dispatch(ADD_TO_CART(productWithSizes));
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
@@ -68,7 +71,7 @@ const ProductDetails = () => {
         currency: "NGN",
         minimumFractionDigits: 0,
       })
-      .replace("NGN", "₦"); // Remove the currency code and add the naira symbol
+      .replace("NGN", "₦");
   };
 
   // Extract ratings from filtered reviews
@@ -83,6 +86,14 @@ const ProductDetails = () => {
 
   const averageRating = calculateAverageRating(ratings);
 
+  const handleSizeSelect = (size) => {
+    setSelectedSizes((prevSizes) =>
+      prevSizes.includes(size)
+        ? prevSizes.filter((s) => s !== size)
+        : [...prevSizes, size]
+    );
+  };
+
   return (
     <>
       <div className={styles["bread-crumb"]}>
@@ -92,14 +103,12 @@ const ProductDetails = () => {
       <section className={styles.section}>
         <div className={`container ${styles.product}`}>
           {product === null ? (
-          <Loader />
-            // <img src={spinnerImg} alt="Loading" style={{ width: "50px" }} />
+            <Loader />
           ) : (
             <>
               <div className={styles.details}>
                 <div className={styles.img}>
-                    <img src={product.imageURL} alt={product.name} />
-                 
+                  <img src={product.imageURL} alt={product.name} />
                 </div>
                 <div className={styles.content}>
                   <span className={styles.new}>New!</span>
@@ -125,14 +134,37 @@ const ProductDetails = () => {
                   <p>{product.desc}</p>
                   <p>
                     <b>Category:</b> {product.category}
-                  </p>
-                  <p>
+                    </p>
+                    
+                    {!product.brand &&
+                       <p>
                     <b>Brand:</b> {product.brand}
                   </p>
-                  <p className={styles.qty}>Quantity</p>
-                  <div className={styles.count}>
-                    {isCartAdded < 0 ? null : (
-                      <>
+
+                    }
+                 
+                  <p className={styles.sizes}>
+                    <b>Sizes:</b>
+                    <ul>
+                      {product.sizes.map((size) => (
+                        <li
+                          key={size}
+                          className={
+                            selectedSizes.includes(size)
+                              ? styles.selected
+                              : ""
+                          }
+                          onClick={() => handleSizeSelect(size)}
+                        >
+                          {capitalizeWords(size)}
+                        </li>
+                      ))}
+                    </ul>
+                  </p>
+                  {isCartAdded < 0 ? null : (
+                    <>
+                      <p className={styles.qty}>Quantity</p>
+                      <div className={styles.count}>
                         <button
                           className="--btn"
                           onClick={() => decreaseCart(product)}
@@ -144,18 +176,18 @@ const ProductDetails = () => {
                         </p>
                         <button
                           className="--btn"
-                          onClick={() => addToCart(product)}
+                          onClick={() => addToCart(product, selectedSizes)}
                           style={{ marginLeft: "5px" }}
                         >
                           +
                         </button>
-                      </>
-                    )}
-                  </div>
+                      </div>
+                    </>
+                  )}
                   <button
                     style={{ width: "50%" }}
                     className="--btn --btn-primary"
-                    onClick={() => addToCart(product)}
+                    onClick={() => addToCart(product, selectedSizes)}
                   >
                     Add to Cart
                   </button>

@@ -62,10 +62,6 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('Dialog Mode:', dialogMode);
-    console.log('ID:', id);
-    console.log('Product Edit:', productEdit);
-
     if (dialogMode === 'EDIT' && id && productEdit) {
       setProduct(productEdit);
       setFiles([productEdit.imageURL]);
@@ -78,7 +74,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
-    setErrors((prev) => ({ ...prev, [name]: '' })); // Clear error when user types
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const handleSizeChange = (e) => {
@@ -152,7 +148,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
         imageURL: product.imageURL,
         price: Number(product.price),
         category: product.category,
-        brand: product.brand || '', // Make brand optional
+        brand: product.brand || '',
         desc: product.desc,
         sizes: product.sizes,
         createdAt: Timestamp.now().toDate(),
@@ -187,9 +183,9 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
         imageURL: product?.imageURL,
         price: Number(product?.price),
         category: product?.category,
-        brand: product?.brand || '', // Make brand optional
+        brand: product?.brand || '', 
         desc: product?.desc,
-        sizes: product?.sizes, // Save sizes
+        sizes: product?.sizes, 
         createdAt: productEdit.createdAt,
         editedAt: Timestamp.now().toDate(),
       });
