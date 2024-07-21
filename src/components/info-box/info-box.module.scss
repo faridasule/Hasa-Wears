@@ -3,12 +3,23 @@
   max-width: 30rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
+.cardClass{
+h3{
+   font-size: 14px;
+    color: #000;
+}
+}
 
   .card {
-    border: 1px solid #ccc;
+    border: none !important;
     border-bottom: 3px solid var(--light-blue);
     padding: 5px;
-    background-color: #f5f6fa;
+    box-shadow: none !important;
+    h3{
+       font-size: 14px;
+    color: #000;
+    }
+   
   }
 
   span {

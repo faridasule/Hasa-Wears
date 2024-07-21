@@ -5,12 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import Card from '../../../components/card/index'
 import CheckoutSummary from '../../../components/checkout-summary/index'
 import {
-  SAVE_BILLING_ADDRESS,
   SAVE_SHIPPING_ADDRESS,
 } from '../../../redux/features/checkoutSlice'
 import styles from './checkout-details.module.scss'
 import { setBreadCrumb } from '../../../redux/features/siteSlice'
-import BreadCrumbLayout from '../../../components/layout/index'
+import BreadCrumbLayout from '../../../components/bread-crumb/index'
 import { selectEmail, selectUserID } from '../../../redux/features/authSlice'
 import {
   CLEAR_CART,
@@ -20,8 +19,11 @@ import {
 import { selectShippingAddress } from '../../../redux/features/checkoutSlice'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { db } from '../../../firebase/config'
-import { Dialog, Pane, Button, Text, Heading } from 'evergreen-ui'
-import FlutterPay from "../../../components/checkout-form/flutter";
+import { Dialog, Pane, Text, Heading } from 'evergreen-ui'
+import FlutterPay from "../../../components/flutter/flutter";
+import LoadingIcons from "react-loading-icons";
+
+
 
 
 const initialAddressState = {
@@ -41,6 +43,8 @@ const CheckoutDetails = () => {
   })
 
   const [isDialogShown, setIsDialogShown] = useState(false)
+    const [loading, setLoading] = useState(false)
+
 
   const userID = useSelector(selectUserID)
   const userEmail = useSelector(selectEmail)
@@ -67,7 +71,7 @@ const CheckoutDetails = () => {
     })
   }
 
-  const saveOrder = async () => {
+   const saveOrder = async () => {
     const today = new Date()
     const date = today.toDateString()
     const time = today.toLocaleTimeString()
@@ -77,9 +81,9 @@ const CheckoutDetails = () => {
       orderDate: date,
       orderTime: time,
       orderAmount: cartTotalAmount,
-      orderStatus: 'Order Placed...',
+      orderStatus: 'Order Placed',
       cartItems,
-      shipping,
+      shipping:shippingAddress,
       createdAt: Timestamp.now().toDate(),
     }
     try {
@@ -87,18 +91,25 @@ const CheckoutDetails = () => {
       dispatch(CLEAR_CART())
       setIsDialogShown(true)
     } catch (error) {
+      console.error('Error saving order: ', error)
+    } finally {
+      setLoading(false)
     }
   }
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
+        setLoading(true)
+
     dispatch(SAVE_SHIPPING_ADDRESS(shippingAddress))
+    console.log(shippingAddress, 'address')
     saveOrder()
   }
 
   const handleDialogClose = () => {
     setIsDialogShown(false)
-    // navigate('/order-history')
+    navigate('/order-history')
   }
 
   return (
@@ -215,11 +226,13 @@ const CheckoutDetails = () => {
                 type="submit"
                 className="--btn --btn-primary"
               >
-                Proceed To Checkout
+                 {loading ?  <LoadingIcons.ThreeDots height={"0.5rem"} /> : 'Proceed To Checkout'}
+
+                {/* Proceed To Checkout */}
               </button>
             </Card>
           </div>
-          <div>
+          <div className={styles['summary-card']}>
             <Card cardClass={styles.card}>
               <CheckoutSummary />
             </Card>
@@ -231,9 +244,9 @@ const CheckoutDetails = () => {
           // title="Checkout Successful"
           onCloseComplete={handleDialogClose}
           hasFooter={false}
-          hasHeader={false}
+          // hasHeader={false}
         >
-          <Pane textAlign={'center'} paddingTop={'4rem'}>
+          <Pane textAlign={'center'} marginBottom={'2rem'}>
             <Heading marginBottom={'2rem'} size={600}>
               Your Order was successful!
             </Heading>
@@ -247,7 +260,7 @@ const CheckoutDetails = () => {
               Okay
             </button> */}
 
-                                  <FlutterPay />
+                                  <FlutterPay onPay={handleDialogClose}/>
 
           </Pane>
         </Dialog>

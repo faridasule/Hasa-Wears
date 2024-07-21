@@ -1,45 +1,121 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { selectUserName } from "../../../redux/features/authSlice";
-import styles from "./navbar.module.scss";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import styles from './navbar.module.scss';
+import { FaPlus } from 'react-icons/fa';
+import { AiOutlineHome } from 'react-icons/ai';
+import { HiOutlineChartBarSquare } from 'react-icons/hi2';
+import { FaRegFolder } from 'react-icons/fa6';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import AddProduct from '../../admin/add-product/index';
 
-const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
+const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : '');
 
-const NavBar = () => {
-  const userName = useSelector(selectUserName);
+const NavBar = ({ mode }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [dialogMode, setDialogMode] = useState('ADD');
+
+  const openAddProductDialog = () => {
+    setDialogMode('ADD');
+    setIsDialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
+  };
 
   return (
     <div className={styles.navbar}>
-      <div className={styles.user}>
-        <FaUserCircle size={40} color="#fff" />
-        <h4>{userName}</h4>
-      </div>
-      <nav>
+      {mode === 'Full' ? (
+        <>
+          <div className={styles.logo}>
+            <Link to="/">
+              <h2>
+                Hasa<span>Wears</span>.
+              </h2>
+            </Link>
+          </div>
+          <div className={styles.button}>
+            <button className="--btn" onClick={openAddProductDialog}>
+              <span>
+                <FaPlus color="#fff" />
+              </span>
+              Add a Product
+            </button>
+          </div>
+        </>
+      ) : (
+        ''
+      )}
+
+      <nav className={styles.nav}>
         <ul>
           <li>
-            <NavLink to="/admin/home" className={activeLink}>
-              Home
+            <NavLink
+              to="/admin/dashboard"
+              className={mode === 'Full' ? activeLink : 'link'}
+            >
+              <div>
+                <AiOutlineHome fontWeight={'200'} color="#000000" size={25} />
+              </div>
+              {mode === 'Full' ? <p>Dashboard</p> : ''}
             </NavLink>
           </li>
+
           <li>
-            <NavLink to="/admin/all-products" className={activeLink}>
-              All Products
+            <NavLink
+              to="/admin/all-products"
+              className={mode === 'Full' ? activeLink : 'link'}
+            >
+              <div>
+                <FaRegFolder className={mode === 'Full' ? '' : 'link'} color="#000000" size={20} />
+              </div>
+              {mode === 'Full' ? <p>Manage Products</p> : ''}
             </NavLink>
           </li>
+
           <li>
-            <NavLink to="/admin/add-product/ADD" className={activeLink}>
-              Add Product
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin/orders" className={activeLink}>
-              Orders
+            <NavLink
+              to="/admin/orders"
+              className={mode === 'Full' ? activeLink : 'link'}
+            >
+              <div>
+                <HiOutlineChartBarSquare color="#000000" size={25} />
+              </div>
+              {mode === 'Full' ? <p>Manage Orders</p> : ''}
             </NavLink>
           </li>
         </ul>
       </nav>
+
+      <Dialog open={isDialogOpen}  fullWidth maxWidth="md">
+        <DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 20,
+              top: 15,
+              color: (theme) => theme.palette.grey[500],
+              fontSize: 'large'
+            }}
+          >
+            <CloseIcon size={ 50} />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <AddProduct dialogMode={dialogMode} onClose={handleClose} />
+        </DialogContent>
+        {/* <DialogActions> */}
+          {/* <button className="--btn --btn-primary" onClick={handleClose}>
+            Close
+          </button> */}
+        {/* </DialogActions> */}
+      </Dialog>
     </div>
   );
 };

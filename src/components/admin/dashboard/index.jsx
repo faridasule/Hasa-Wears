@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import InfoBox from "../../info-box/index";
-import styles from "./home.module.scss";
+import styles from "./dashboard.module.scss";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { BsCart4 } from "react-icons/bs";
 import { FaCartArrowDown } from "react-icons/fa";
@@ -17,17 +17,18 @@ import {
 } from "../../../redux/features/orderSlice";
 import useFetchCollection from "../../../custopm-hook/useFetchCollection";
 import Chart from "../../chart/index";
+import PieChart from "../../piechart";
 
 //Icons
-const earningIcon = <AiFillDollarCircle size={30} color="#28a745" />;
-const productIcon = <BsCart4 size={30} color="#005EB2" />;
-const ordersIcon = <FaCartArrowDown size={30} color="#d32e2d" />;
+const earningIcon = <AiFillDollarCircle size={20} color="#BDBDBD" />;
+const productIcon = <BsCart4 size={25} color="#BDBDB" />;
+const ordersIcon = <FaCartArrowDown size={20} color="#BDBDBD" />;
 
-const Home = () => {
+const Dashboard = () => {
   const products = useSelector(selectProducts);
   const orders = useSelector(selectOrderHistory);
   const totalOrderAmount = useSelector(selectTotalOrderAmount);
-
+console.log(totalOrderAmount, 'amount')
   const fbProducts = useFetchCollection("products");
   const { data } = useFetchCollection("orders");
 
@@ -46,32 +47,34 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <h3 style={{fontWeight: "700"}}>Dahboard</h3>
+      <h3 style={{fontWeight: "700"}}>Dashboard</h3>
       <div className={styles["info-box"]}>
         <InfoBox
           cardClass={`${styles.card} ${styles.card1}`}
-          title={"Earnings"}
-          count={`$${totalOrderAmount}`}
+          title={"Total Revenue"}
+          count={`₦${totalOrderAmount}`}
           icon={earningIcon}
         />
         <InfoBox
           cardClass={`${styles.card} ${styles.card2}`}
-          title={"Products"}
+          title={"Total Products"}
           count={products.length}
           icon={productIcon}
         />
         <InfoBox
           cardClass={`${styles.card} ${styles.card3}`}
-          title={"Orders"}
+          title={"Total Orders"}
           count={orders.length}
           icon={ordersIcon}
         />
       </div>
-      <div>
+    <hr style={{width: '100%', marginBottom: '10px', marginTop: '15px', color: '#E4E4E7', fontWeight: '100'}} />
+      <div className={styles['chart-wrapper']} style={{display: 'flex'}}>
         <Chart />
+        <PieChart/>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;

@@ -7,7 +7,7 @@ import { selectUserID } from "../../redux/features/authSlice";
 import { selectOrderHistory, STORE_ORDERS } from "../../redux/features/orderSlice";
 import styles from "./order-history.module.scss";
 import { setBreadCrumb } from '../../redux/features/siteSlice'
-import BreadCrumbLayout from '../../components/layout/index'
+import BreadCrumbLayout from '../../components/bread-crumb/index'
 import { ChevronDownIcon, ChevronRightIcon } from 'evergreen-ui';
 
 const OrderHistory = () => {
@@ -99,7 +99,7 @@ const OrderHistory = () => {
                         </tr>
                         {showDetails[index] && (
                           <tr className={styles.additionalRow}>
-                            <td colSpan="7">
+                            <td colSpan="6">
                               <div className={styles.details}>
                                    <div><strong>Order Id:</strong>{id}</div>
 

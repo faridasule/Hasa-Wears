@@ -27,9 +27,6 @@ header {
     position: relative;
   }
 
-  .logo{
-  }
-
   .logo a h2 {
     width: 30%;
           color: var(--color-primary);
@@ -99,24 +96,43 @@ header {
     }
   .cart{
     display: flex;
-      // color: var(--text-color);
         align-items: center !important;
     justify-content: center !important;
   }
+  .qty{
+    margin-right: 16px;
+    margin-left: 16px;
+    display: flex;
+    gap: 14px;
+  }
 
-  .badge-container {
-    padding-right: 28px;
-    margin-left: 20px;
-  // position: relative;
-  // display: inline-block;
-}
 
-.badge-content {
-  // position: absolute;
-  // top: -10px;
-  // right: -10px;
-}
+ .badge-container {
+    position: relative;
+    display: inline-block;
 
+ }
+
+   .badge-content {
+      position: absolute;
+      top: -8px;
+      right: -5px;
+      background-color: #F76659;
+      color: #FFEFEB
+;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    svg {
+      vertical-align: middle;
+    }
+  
 
     .cart a {
       display: flex !important;

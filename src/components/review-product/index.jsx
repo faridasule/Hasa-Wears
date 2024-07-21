@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { selectUserID, selectUserName } from "../../redux/features/authSlice";
-import Card from "../card/index";
 import styles from "./review-product.module.scss";
 import StarsRating from "react-star-rate";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { toast } from "react-toastify";
 import useFetchDocument from "../../custopm-hook/useFetchDocument";
-import spinnerImg from "../../assets/spinner.jpg";
+import { Textarea } from "evergreen-ui";
+import LoadingIcons from "react-loading-icons";
 
-const ReviewProducts = () => {
+
+const ReviewProducts = ({ id, onClose }) => {
   const [rate, setRate] = useState(0);
   const [review, setReview] = useState("");
   const [product, setProduct] = useState(null);
-  const { id } = useParams();
+   const [loading, setLoading] = useState(false);
   const { document } = useFetchDocument("products", id);
   const userID = useSelector(selectUserID);
   const userName = useSelector(selectUserName);
@@ -26,6 +26,7 @@ const ReviewProducts = () => {
 
   const submitReview = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const today = new Date();
     const date = today.toDateString();
@@ -43,52 +44,47 @@ const ReviewProducts = () => {
       toast.success("Review submitted successfully");
       setRate(0);
       setReview("");
+       onClose(); 
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <section>
       <div className={`container ${styles.review}`}>
-        <h2>Review Products</h2>
-        {product === null ? (
-          <img src={spinnerImg} alt="Loading..." style={{ width: "50px" }} />
-        ) : (
-          <>
-            <p>
-              <b>Product name:</b> {product.name}
-            </p>
-            <img
-              src={product.imageURL}
-              alt={product.name}
-              style={{ width: "100px" }}
-            />
-          </>
-        )}
+      
 
-        <Card cardClass={styles.card}>
           <form onSubmit={(e) => submitReview(e)}>
-            <label>Rating:</label>
+          <label>Rating:</label>
+          <div className={styles.rating}>
             <StarsRating
               value={rate}
               onChange={(rate) => {
                 setRate(rate);
               }}
             />
+            </div>
             <label>Review</label>
-            <textarea
+            <Textarea
               value={review}
               required
               onChange={(e) => setReview(e.target.value)}
               cols="30"
               rows="10"
-            ></textarea>
-            <button type="submit" className="--btn --btn-primary">
-              Submit Review
+          />
+          <div className={styles.button}>
+            <button type="submit" className="--btn --btn-primary" disabled={loading}>
+              {loading ? (
+               <LoadingIcons.ThreeDots/>
+              ) : (
+                "Submit"
+              )}
             </button>
+            </div>
           </form>
-        </Card>
       </div>
     </section>
   );

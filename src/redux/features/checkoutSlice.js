@@ -24,6 +24,7 @@ export const { SAVE_BILLING_ADDRESS, SAVE_SHIPPING_ADDRESS } =
   checkoutSlice.actions;
 
 export const selectShippingAddress = (state) => state.checkout.shippingAddress;
+console.log(selectShippingAddress)
 export const selectBillingAddress = (state) => state.checkout.billingAddress;
 
 export default checkoutSlice.reducer;

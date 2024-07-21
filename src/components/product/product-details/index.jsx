@@ -18,9 +18,9 @@ import StarsRating from "react-star-rate";
 import defaultImage from "../../../assets/user.svg";
 import styles from "./product-detail.module.scss";
 import { setBreadCrumb } from "../../../redux/features/siteSlice";
-import BreadCrumbLayout from "../../layout";
+import BreadCrumbLayout from "../../bread-crumb";
 import { FaHeart } from "react-icons/fa";
-import { Loader } from "@mantine/core";
+import Loader from "../../content-loader";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -92,16 +92,14 @@ const ProductDetails = () => {
       <section className={styles.section}>
         <div className={`container ${styles.product}`}>
           {product === null ? (
-            <img src={spinnerImg} alt="Loading" style={{ width: "50px" }} />
+          <Loader />
+            // <img src={spinnerImg} alt="Loading" style={{ width: "50px" }} />
           ) : (
             <>
               <div className={styles.details}>
                 <div className={styles.img}>
-                  {product.imageURL ? (
                     <img src={product.imageURL} alt={product.name} />
-                  ) : (
-                    <Loader color="#007AFF" size="lg" type="dots" />
-                  )}
+                 
                 </div>
                 <div className={styles.content}>
                   <span className={styles.new}>New!</span>

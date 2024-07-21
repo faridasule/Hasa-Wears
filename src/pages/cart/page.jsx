@@ -19,7 +19,7 @@ import Card from '../../components/card/index'
 import { selectIsLoggedIn } from '../../redux/features/authSlice'
 import { CiShoppingCart } from 'react-icons/ci'
 import { setBreadCrumb } from '../../redux/features/siteSlice'
-import BreadCrumbLayout from '../../components/layout/index'
+import BreadCrumbLayout from '../../components/bread-crumb/index'
 import { ChevronDownIcon, ChevronRightIcon } from 'evergreen-ui'
 
 const Cart = () => {
@@ -70,6 +70,10 @@ const Cart = () => {
       dispatch(SAVE_URL(url))
       navigate('/login')
     }
+  }
+
+   const continueShop = () => {
+      navigate('/#product')  
   }
 
   const formatNaira = (amount) => {
@@ -281,7 +285,7 @@ const Cart = () => {
 
                   <button
                     className="--btn  --btn-block"
-                    onClick={checkout}
+                    onClick={continueShop}
                     style={{
                       border: '1px solid ##B0BABF',
                       color: '#000000',

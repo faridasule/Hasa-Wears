@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../auth.module.scss";
-import loginImg from "../../../assets/login.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle, FaEye} from "react-icons/fa"; 
 import Card from "../../../components/card/index";
 import { auth } from "../../../firebase/config";
 import {
@@ -83,9 +81,7 @@ const Login = () => {
     <>
       {isLoading && <Loader />}
       <section className={`container ${styles.auth}`}>
-        {/* <div className={styles.img}>
-          <img src={loginImg} alt="Login" width="600" />
-        </div> */}
+     
 
         <Card cardClass={styles.card}>
           <div className={styles.form}>

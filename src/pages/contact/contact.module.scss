@@ -1,71 +1,126 @@
-.contact {
-  .card {
-    padding: 1rem;
-    border: 1px solid #ccc;
-  }
+.section {
+  .contact {
+    padding-left: 0 !important;
+    .info-wrap {
+      display: flex;
+      align-items: center;
+      padding-top: 30px;
+      gap: 80px;
+      margin-bottom: 40px !important;
 
-  .card2 {
-    padding: 2rem;
-    background-color: var(--light-blue);
-    color: #fff;
-    h3,
-    p {
-      color: #fff;
-    }
-    .icons {
-      margin: 3rem 0;
-      span {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        margin-bottom: 1rem;
-        a,
+      .img {
+        width: 100%;
+        max-width: 500px;
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      .info {
+        margin-top: 20px;
+        width: 45%;
+
+        h2 {
+          margin-bottom: 10px;
+          line-height: 62px !important;
+          font-size: clamp(1.5rem, 7vw, 4rem);
+        }
+
         p {
-          margin-left: 5px;
+          margin-bottom: 20px;
+          line-height: 28px;
+          font-weight: 400;
+        }
+        .contactInfo {
+          p {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+
+            .icon {
+              margin-right: 10px;
+            }
+          }
         }
       }
     }
+
+    .contact-wrapper {
+      // margin-top: 40px !important;
+      margin: auto !important;
+    }
   }
+}
 
-  .section {
-    display: flex;
-    align-items: start;
+@media (max-width: 1024px) {
+  .contact {
+    .info-wrap {
+      gap: 30px !important;
 
-    form {
-      width: 500px;
-      max-width: 100%;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-      label {
-        display: block;
-        font-size: 1.4rem;
-        font-weight: 500;
+      .img {
+        max-width: 350px !important;
+        img {
+          width: 100%;
+        }
       }
-      input[type="text"],
-      input[type="number"],
-      input[type="file"],
-      input[type="email"],
-      select,
-      textarea,
-      input[type="password"] {
-        display: block;
-        font-size: 1.6rem;
-        font-weight: 300;
-        padding: 1rem;
-        margin: 1rem auto;
-        width: 100%;
-        border: 1px solid #777;
-        border-radius: 3px;
-        outline: none;
+
+      .info {
+        width: 80% !important;
+
+        h2 {
+          line-height: 2px !important;
+        }
       }
     }
   }
 }
 
-@media screen and (max-width: 700px) {
+@media (max-width: 760px) {
   .contact {
-    .section {
+    padding-right: 0 !important;
+
+    .info-wrap {
+      display: flex;
+      align-items: center;
       flex-direction: column;
+      justify-content: center;
+      padding-top: 30px;
+      gap: 10px !important;
+
+      .img {
+        width: 100%;
+        max-width: 500px !important;
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      .info {
+        margin-top: 20px;
+        width: 80% !important;
+
+        h2 {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .contact {
+    .info-wrap {
+      .img {
+        width: 100%;
+        max-width: 300px !important;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 }

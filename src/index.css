@@ -41,11 +41,13 @@
 
 html {
   font-size: 10px;
+  height: 100%;
 }
 
 body {
   /* font-family: var(--font-family); */
       font-family: "Lexend Deca", sans-serif !important;
+      height: 100%;
 
 }
 

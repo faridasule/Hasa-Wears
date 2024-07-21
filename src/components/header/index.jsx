@@ -113,10 +113,11 @@ const Header = () => {
       <Link to="/cart">
         <Badge
           className={styles["badge-content"]}
-          color="primary"
-          badgeContent={cartTotalQuantity}
+          // color="primary"
+          color="red"
+          // badgeContent={cartTotalQuantity}
           onClick={() => navigate("/cart/")}
-        ></Badge>
+        >{cartTotalQuantity}</Badge>
         <HiShoppingCart size={25} color="#B0BABF" />
       </Link>
     </div>
@@ -127,9 +128,9 @@ const Header = () => {
       <div onClick={() => setShowWishlistDialog(true)}> {/* Show wishlist dialog on click */}
         <Badge
           className={styles["badge-content"]}
-          color="primary"
+          color="red"
           badgeContent={wishTotalQuantity}
-        ></Badge>
+        >{wishTotalQuantity}</Badge>
         <FaHeart size={25} color="#B0BABF" />
       </div>
     </div>
@@ -172,7 +173,7 @@ const Header = () => {
             </li>
             <li>
               <AdminOnlyLink>
-                <Link to="/admin/home">
+                <Link to="/admin/dashboard">
                   <button className="--btn">Admin</button>
                 </Link>
               </AdminOnlyLink>
@@ -183,7 +184,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contact" className={activeLink}>
+              <NavLink to="/about" className={activeLink}>
                 About
               </NavLink>
             </li>
@@ -200,18 +201,33 @@ const Header = () => {
                   Sign In
                 </NavLink>
               )}
+          
               {isLoggedIn && (
                 <NavLink to="/order-history" className={activeLink}>
                   My Orders
                 </NavLink>
               )}
-              <div className={styles.cart}>{cart}</div>
+              <div className={styles.qty}>
+                <div className={styles.cart}>{cart}</div>
               <div className={styles.cart}>{wishlist}</div>
+              </div>
               {isLoggedIn && (
                 <NavLink className={styles.auth} onClick={logoutUser} to="/">
                   Logout
                 </NavLink>
               )}
+                      <div>
+              {isLoggedIn && (
+                <a color="#fff" href="#home">
+                  <Avatar
+                    name={displayName}
+                    size={40}
+                    hashValue="id_124"
+                    marginLeft={16}
+                  />
+                </a>
+              )}
+            </div>
             </span>
           </div>
         </nav>

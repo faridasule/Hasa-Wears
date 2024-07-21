@@ -1,10 +1,11 @@
 .review {
-  .card {
-    width: 100%;
-    max-width: 500px;
-    padding: 1rem;
-  }
+
   form {
+
+    .rating{
+margin-left: -10px;
+margin-bottom: 16px;
+    }
     label {
       display: block;
       font-size: 1.4rem;
@@ -26,6 +27,12 @@
       border: 1px solid #777;
       border-radius: 3px;
       outline: none;
+    }
+
+    .button{
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
     }
   }
 }

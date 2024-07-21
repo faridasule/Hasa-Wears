@@ -21,6 +21,8 @@ const ProductItem = ({ grid, id, name, price, imageURL }) => {
   const dispatch = useDispatch()
   const { data } = useFetchCollection('reviews')
 
+  console.log(data, 'data')
+
   // Filter reviews for the current product
   const filteredReviews = data.filter((review) => review.productID === id)
 
@@ -118,9 +120,9 @@ const ProductItem = ({ grid, id, name, price, imageURL }) => {
             filledIcon={<i className="fa fa-star"></i>}
             className={styles.ratingStart}
           />
-          <span className={styles.commentCount}>
+          <p className={styles.commentCount}>
             ({filteredReviews.length})
-          </span>
+          </p>
         </div>
       </div>
     </Card>

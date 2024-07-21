@@ -1,12 +1,21 @@
 .charts {
-  width: 100%;
-  max-width: 700px !important;
-
+  width: 65%;
 
   .card {
     padding: 1rem;
-    border: 1px solid #ccc;
-    border-bottom: 3px solid var(--color-danger);
+    border: none !important;
+    box-shadow: none !important;
+    h4{
+      font-size: 14px;
+      font-weight: 600;
+      color: #000;
+    }
  
   }
+}
+
+@media (max-width: 700px) {
+.charts{
+  width: 100% !important;
+}
 }

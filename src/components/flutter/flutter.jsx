@@ -9,7 +9,7 @@ import { useDispatch} from 'react-redux'
  
 
 
-const FlutterPay = () => {
+const FlutterPay = ({ onPay }) => {
     const cart = useSelector(selectCartTotalAmount);
     const email = useSelector(selectEmail);
     const userName = useSelector(selectUserName);
@@ -42,11 +42,13 @@ const FlutterPay = () => {
     callback: (response) => {
       console.log(response);
       closePaymentModal();
+          onPay();
+
     },
     onClose: () => {},
   };
 
-  return <FlutterWaveButton onClose={ () => dispatch(CLEAR_CART())} {...fwConfig} className={style["button"]} />;
+  return <FlutterWaveButton  onClose={ () => dispatch(CLEAR_CART())} {...fwConfig} className={style["button"]} />;
 };
 
 export default FlutterPay;

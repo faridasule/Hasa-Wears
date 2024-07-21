@@ -1,3 +1,43 @@
+.section {
+    padding: 30px 70px 1000px 70px;
+
+  height: 100svh;
+
+  @media (max-width: 768px) {
+        padding: 30px  10px 1500px 10px;
+
+
+    .showOnMobile{
+      display: block;
+    }
+  }
+}
+
+.showOnMobile{
+      display: none;
+    }
+
+.details-div {
+  margin-top: 20px;
+  padding-bottom: 10px;
+
+  p {
+    color: #252c32;
+    font-weight: 300;
+    padding: 5px 0;
+  }
+}
+
+   .pending {
+      color: #f76659;
+      font-weight: 400;
+    }
+
+    .delivered {
+      color: #398b38 !important;
+      font-weight: 400;
+    }
+
 .table {
   padding: 5px;
   width: 100%;
@@ -8,20 +48,14 @@
     width: 100%;
     font-size: 1.4rem;
 
-    thead {
-      border-top: 2px solid var(--light-blue);
-      border-bottom: 2px solid var(--light-blue);
-    }
+ 
 
-    th {
-      border: 1px solid #eee;
-    }
-
-    th,
-    td {
+    th, td {
       vertical-align: top;
       text-align: left;
-      padding: 8px;
+      color: #252c32;
+      padding: 20px 0;
+
       &.icons {
         > * {
           margin-right: 5px;
@@ -30,43 +64,57 @@
       }
     }
 
+    .icons a{
+      color: var(--color-primary);
+      font-weight: 400;
+    }
+
     tr {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 2px solid #f9fafc;
     }
 
     tr:nth-child(even) {
-      background-color: #eee;
+      background-color: #f9fafc;
     }
   }
-  .summary {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
 
-    .card {
-      padding: 1rem;
-      .text {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        h3 {
-          color: var(--color-danger);
-        }
-      }
-      button {
-        margin-top: 5px;
-      }
-    }
+     td:nth-child(7) {
+      button{
+ background-color: transparent;
+            border: none !important;
+    }}
+
+  
+}
+
+
+.mobileRow, .mobileDetails {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: table-row;
   }
 }
-.count {
-  display: flex;
-  align-items: center;
-  button {
-    border: 1px solid var(--darkblue);
+
+.desktopRow {
+  @media (max-width: 768px) {
+    display: none;
   }
-  & > * {
-    margin-right: 1rem;
+}
+
+.detailsRow {
+  background-color: #f9fafc;
+}
+
+.details {
+  padding: 15px;
+
+  p {
+    margin: 5px 0;
+  }
+
+  a {
+    color: var(--color-primary);
+    font-weight: 400;
   }
 }

@@ -24,7 +24,7 @@ const ChangeOrderStatus = ({ order, id }) => {
       orderAmount: order.orderAmount,
       orderStatus: status,
       cartItems: order.cartItems,
-      shippingAddress: order.shippingAddress,
+      shippingAddress: order.shipping,
       createdAt: order.createdAt,
       editedAt: Timestamp.now().toDate(),
     };
@@ -62,7 +62,7 @@ const ChangeOrderStatus = ({ order, id }) => {
                 <option value="Delivered">Delivered</option>
               </select>
             </span>
-            <span>
+            <span className={styles.button}>
               <button type="submit" className="--btn --btn-primary">
                 Update Status
               </button>

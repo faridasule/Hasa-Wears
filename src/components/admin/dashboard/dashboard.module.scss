@@ -1,0 +1,41 @@
+.home{
+  margin-top: 0 !important;
+  padding: 20px;
+  h3{
+    font-size: 22px;
+  }
+}
+
+.info-box {
+  display: flex;
+margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  border: 1px solid #E4E4E7;
+  padding: 5px;
+  box-shadow: none !important;
+  border-radius: 10px;
+}
+
+.card1 {
+  border-bottom: 2px solid #064E3B;
+}
+.card2 {
+  border-bottom: 2px solid #047857;
+}
+.card3 {
+  border-bottom: 2px solid #6EE7B7;
+}
+
+
+.chart-wrapper{
+  display: flex;
+}
+
+@media (max-width: 700px) {
+.chart-wrapper{
+  flex-direction: column !important;
+}
+}

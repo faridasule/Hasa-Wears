@@ -1,0 +1,80 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .card {
+    padding: 2rem 3rem;
+    border: 1px solid #ebedf0;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+  }
+
+  .section {
+    display: flex;
+    align-items: start;
+
+    form {
+      width: 500px;
+      max-width: 100%;
+      margin-bottom: 1rem;
+      label {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      input[type='text'],
+      input[type='number'],
+      input[type='file'],
+      input[type='email'],
+      select,
+      textarea,
+      input[type='password'] {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 500;
+        padding: 1rem;
+        margin: 1rem auto;
+        width: 100%;
+        border: 1px solid #808080 !important;
+        border-radius: 3px;
+        outline: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .card {
+    padding: 1.5rem !important;
+    border: none !important;
+  }
+  .contact {
+    .section {
+      flex-direction: column;
+
+      form {
+        width: 500px;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    padding: 1rem !important;
+    border: none !important;
+  }
+  .contact {
+    .section {
+      display: flex;
+      align-items: center !important;
+      form {
+        width: 300px;
+        max-width: 100%;
+      }
+    }
+  }
+}

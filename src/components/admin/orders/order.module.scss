@@ -1,50 +1,143 @@
 .table {
-  padding: 5px;
+  padding: 10px 20px;
   width: 100%;
   overflow-x: auto;
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    padding-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  .bread-crumb {
+    margin: 15px 0;
+  }
+  .search {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+  }
 
   table {
     border-collapse: collapse;
     width: 100%;
     font-size: 1.4rem;
 
-    thead {
-      border-top: 2px solid var(--light-blue);
-      border-bottom: 2px solid var(--light-blue);
+    tbody {
+      text-align: center;
+
+      tr {
+        cursor: pointer;
+        border-bottom: 1px solid #e5e9eb;
+                td:nth-child(1),
+                td:nth-child(2),
+
+        td:nth-child(3),
+        td:nth-child(4),
+        td:nth-child(5),
+        td:nth-child(6)
+         {
+          padding-top: 18px;
+        }
+        td:nth-child(7) {
+          text-align: center;
+        }
+      }
     }
 
-    th {
-      border: 1px solid #eee;
-    }
-
+      td:nth-child(7) {
+   color: var(--color-primary);
+   cursor: pointer;
+  }
+   
     th,
     td {
       vertical-align: top;
       text-align: left;
       padding: 8px;
+      color: #252c32;
+
       &.icons {
         > * {
           margin-right: 5px;
           cursor: pointer;
         }
       }
+      .icons {
+        padding-left: 10px;
+      }
+
+      .img {
+        img {
+          object-fit: cover;
+          height: 100px;
+        }
+      }
     }
 
     tr {
-      border-bottom: 1px solid #ccc;
-      cursor: pointer;
+      border-bottom: 2px solid #e5e9eb;
     }
 
     tr:nth-child(even) {
-      background-color: #eee;
+      // background-color: #eee;
     }
-    .pending {
-      color: orangered;
-      font-weight: 500;
+  }
+}
+
+.additional-row {
+  display: none;
+}
+
+.showOnMobile {
+  display: none;
+}
+
+  .pending {
+      color: #FF3B30;
+      font-weight: 400;
+      font-size: 14px;
     }
     .delivered {
-      color: green;
-      font-weight: 500;
+      color: #047857;
+      font-weight: 400;
+            font-size: 14px;
+
+    }
+
+@media (max-width: 600px) {
+  td:nth-child(6) {
+    button {
+      background-color: transparent;
+      border: none !important;
+    }
+  }
+  .additional-row {
+    display: block;
+  }
+
+  .hideOnMobile {
+    display: none;
+  }
+
+  .showOnMobile {
+    display: block;
+  }
+
+  .toggle-content {
+    p {
+      color: #252c32;
+      font-weight: 400;
+      padding-bottom: 10px;
+      b {
+        color: #000;
+        font-weight: 500;
+      }
     }
   }
 }
