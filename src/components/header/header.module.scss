@@ -51,11 +51,25 @@ header {
       justify-content: space-between;
       list-style: none;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
 
       .logo-mobile {
         display: none;
       }
+
+            li:nth-child(3) {
+              a button {
+                font-size: 14px;
+                                color: var(--color-dark);
+font-weight: 600;
+padding: 10px;
+letter-spacing: 0.8px
+
+
+              };
+
+            }
+
 
       li {
         margin: 0 5px;
@@ -72,6 +86,7 @@ header {
       }
     }
   }
+
 
   .header-right {
     display: flex;
@@ -100,10 +115,10 @@ header {
     justify-content: center !important;
   }
   .qty{
-    margin-right: 16px;
+    margin-right: 30px;
     margin-left: 16px;
     display: flex;
-    gap: 14px;
+    gap: 18px;
   }
 
 
@@ -117,12 +132,12 @@ header {
       position: absolute;
       top: -8px;
       right: -5px;
-      background-color: #F76659;
+      background-color: var(--color-primary);
       color: #FFEFEB
 ;
       border-radius: 50%;
-      height: 20px;
-      width: 20px;
+      height: 18px;
+      width: 18px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -183,8 +198,68 @@ header {
     cursor: pointer;
     display: none;
   }
+  .cart-container{
+    display: none;
+  }
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
+   .badge-container {
+    position: relative;
+    display: inline-block;
+
+ }
+
+   .logo a h2 {
+    width: 20%;
+          font-size: 24px !important;
+
+    span {
+                font-size: 24px !important;
+
+    }
+  }
+
+   .badge-content {
+      position: absolute;
+      top: -8px;
+      right: -5px;
+      background-color: var(--color-primary);
+      color: #FFEFEB
+;
+      border-radius: 50%;
+      height: 16px;
+      width: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    svg {
+      vertical-align: middle;
+    }
+
+.cart-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #252C32;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  color: #252C32;
+  padding: 10px; 
+  border-radius: 5px;
+}
+
+    
+  .desktop-avartar{
+    display: none;
+  }
 .name{
   display: block;
 }
@@ -323,6 +398,8 @@ header {
       }
     }
   }
+
+
 }
 
 .active {

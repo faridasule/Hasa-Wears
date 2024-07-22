@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  padding: 0 36px;
+  padding: 0px 36px;
 
   .img {
     animation: slide-down 0.5s ease;
@@ -15,15 +15,18 @@
     width: 42rem;
     padding: 2.5rem 3rem;
     animation: slide-up 0.5s ease;
+
     h2 {
       color: var(--color-dark);
       text-align: left;
       font-size: 24px;
     }
+
     p {
       font-weight: 400;
       line-height: 24px;
       font-size: 14px;
+      margin-top: 1rem; /* Add some margin for better spacing */
     }
 
     h5 {
@@ -33,8 +36,10 @@
       font-size: 14px;
       color: #777;
     }
+
     form {
       margin-top: 20px !important;
+
       input[type='text'],
       input[type='email'],
       input[type='password'] {
@@ -53,29 +58,37 @@
         font-weight: 400;
         line-height: 24px;
       }
+
       .links {
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
       }
     }
-    .register {
+
+   .register {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
       margin-top: 1rem;
+      p{
+        margin: 0;
+        padding: 0;
+      }
+      div a{
+
+        font-weight: 500;
+      }
     }
   }
 
-  /* Style for the password field container */
   .passwordField {
     display: flex;
     align-items: center;
     position: relative;
   }
 
-  /* Style for the password toggle button */
   .passwordToggle {
     position: absolute;
     right: 10px;
@@ -95,6 +108,7 @@
       transform: translateY(0);
     }
   }
+
   @keyframes slide-down {
     0% {
       transform: translateY(5rem);
@@ -116,25 +130,32 @@
 @media screen and (max-width: 700px) {
   .auth {
     margin: 0 !important;
+
     .form {
       width: 35rem;
       padding: 2.5rem 1.5rem;
     }
   }
+
   .img {
     display: none;
   }
 }
+
 @media screen and (max-width: 460px) {
   .auth {
-    min-height: 70vh;
+    min-height: 75vh;
     margin: 0 !important;
     background-color: #eee;
+
     .form {
-      width: 32rem;
-      padding: 2.5rem 0rem;
+      width: 100%; /* Ensure full width */
+      max-width: 35rem;
+      padding: 2.5rem 1rem; /* Adjusted padding */
+      box-sizing: border-box; /* Ensure padding is included in width */
     }
   }
+
   .img {
     display: none;
   }
@@ -146,18 +167,22 @@
 
   .passwordToggle {
     position: absolute;
-    right: 30px !important;
+    right: 10px !important; /* Adjusted right positioning */
   }
 }
 
 @media screen and (max-width: 350px) {
   .auth {
     margin: 0 !important;
+
     .form {
-      width: 20rem;
+      width: 100%; /* Ensure full width */
+      max-width: 20rem;
       padding: 2rem 0.5rem;
+      box-sizing: border-box; /* Ensure padding is included in width */
     }
   }
+
   .img {
     display: none;
   }

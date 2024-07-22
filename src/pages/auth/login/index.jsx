@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import styles from '../auth.module.scss'
@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 import Loader from '../../../components/loader/index'
 import { useSelector } from 'react-redux'
 import { selectPreviousURL } from '../../../redux/features/cartSlice'
+import { selectEmail, SET_ACTIVE_USER} from '../../../redux/features/authSlice'
 import { InlineAlert, EyeOffIcon, EyeOpenIcon } from 'evergreen-ui'
 import { FcGoogle } from 'react-icons/fc'
 
@@ -21,16 +22,27 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false) 
   const previousURL = useSelector(selectPreviousURL)
+  const userEmail = useSelector(selectEmail)
   const navigate = useNavigate()
 
+
+  useEffect(() => {
+    if (userEmail === 'admin@gmail.com') {
+      navigate('/admin/dashboard')
+    }
+  }, [userEmail, navigate])
+
   // Function to redirect the user based on the previous URL
-  const redirectUser = () => {
+  const redirectUser = (email) => {
+    if (email === 'admin@gmail.com') {
+      return navigate('/admin/dashboard')
+    }
     if (previousURL.includes('cart')) {
       return navigate('/cart')
     }
     navigate('/')
   }
-
+  
   // Formik setup with initial values, validation schema, and submit handler
   const formik = useFormik({
     initialValues: {
@@ -50,7 +62,7 @@ const Login = () => {
           const user = userCredential.user
           setIsLoading(false)
           toast.success('Login Successful...')
-          redirectUser()
+          redirectUser(values.email)
         })
         .catch((error) => {
           setIsLoading(false)
@@ -180,7 +192,7 @@ const Login = () => {
             <span className={styles.register}>
               <p>Don't have an account?</p>
               <div>
-                <Link style={{ color: '#1f93ff' }} to="/register">
+                <Link style={{ color: '#1f93ff'}} to="/register">
                   Sign Up
                 </Link>
               </div>

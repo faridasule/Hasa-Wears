@@ -24,6 +24,7 @@ import {
 } from "../../redux/features/wishlistSlice";
 import { HiShoppingCart } from "react-icons/hi2";
 import Wishlist from "../wishlist";
+import AvatarPopover from "../avartar-popovers/index";
 
 const logo = (
   <div className={styles.logo}>
@@ -108,14 +109,13 @@ const Header = () => {
       });
   };
 
+  // Cart Icons
   const cart = (
     <div className={styles["badge-container"]}>
       <Link to="/cart">
         <Badge
           className={styles["badge-content"]}
-          // color="primary"
           color="red"
-          // badgeContent={cartTotalQuantity}
           onClick={() => navigate("/cart/")}
         >{cartTotalQuantity}</Badge>
         <HiShoppingCart size={25} color="#B0BABF" />
@@ -123,6 +123,7 @@ const Header = () => {
     </div>
   );
 
+  //Wishlist Icons
   const wishlist = (
     <div className={styles["badge-container"]}>
       <div onClick={() => setShowWishlistDialog(true)}> {/* Show wishlist dialog on click */}
@@ -140,11 +141,7 @@ const Header = () => {
     <header className={scrollPage ? `${styles.fixed}` : null}>
       <div className={styles.header}>
         {logo}
-        <nav
-          className={
-            showMenu ? `${styles["show-nav"]}` : `${styles["hide-nav"]}`
-          }
-        >
+        <nav  className={showMenu ? `${styles["show-nav"]}`:`${styles["hide-nav"]}`} >
           <div
             className={
               showMenu
@@ -174,7 +171,7 @@ const Header = () => {
             <li>
               <AdminOnlyLink>
                 <Link to="/admin/dashboard">
-                  <button className="--btn">Admin</button>
+                  <button className="--btn">Dashboard</button>
                 </Link>
               </AdminOnlyLink>
             </li>
@@ -193,38 +190,49 @@ const Header = () => {
                 Contact Us
               </NavLink>
             </li>
+           <li className={styles['cart-container']}>
+    Cart {cart}
+  
+            </li>
+               <li className={styles['cart-container']}>
+    Wishlist {wishlist}
+</li>
+
           </ul>
           <div className={styles["header-right"]} onClick={hideMenu}>
             <span className={styles.links}>
-              {!isLoggedIn && (
-                <NavLink className={styles.auth} to="/login">
-                  Sign In
-                </NavLink>
-              )}
+            
           
-              {isLoggedIn && (
+              {/* {isLoggedIn && (
                 <NavLink to="/order-history" className={activeLink}>
                   My Orders
                 </NavLink>
-              )}
+              )} */}
               <div className={styles.qty}>
                 <div className={styles.cart}>{cart}</div>
               <div className={styles.cart}>{wishlist}</div>
               </div>
-              {isLoggedIn && (
+                {!isLoggedIn && (
+                <NavLink className={styles.auth} to="/login">
+                  Sign In
+                </NavLink>
+              )}
+              {/* {isLoggedIn && (
                 <NavLink className={styles.auth} onClick={logoutUser} to="/">
                   Logout
                 </NavLink>
-              )}
-                      <div>
+              )} */}
+                      <div className={styles['desktop-avartar']}>
               {isLoggedIn && (
                 <a color="#fff" href="#home">
-                  <Avatar
+                  {/* <Avatar
                     name={displayName}
                     size={40}
                     hashValue="id_124"
                     marginLeft={16}
-                  />
+                  /> */}
+                          <AvatarPopover displayName={displayName} />
+
                 </a>
               )}
             </div>
@@ -232,8 +240,7 @@ const Header = () => {
           </div>
         </nav>
         <div className={styles["menu-icon"]}>
-          {cart}
-          {wishlist}
+        
           <div style={{ marginLeft: "20px" }}>
             <HiOutlineMenuAlt3 color="#252C32" size={25} onClick={toggleMenu} />
           </div>

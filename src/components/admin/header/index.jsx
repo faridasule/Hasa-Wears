@@ -16,6 +16,7 @@ import {
   selectIsLoggedIn,
 } from "../../../redux/features/authSlice";
 import { auth } from "../../../firebase/config";
+import AvatarPopover from "../../avartar-popovers";
 
 
 
@@ -116,13 +117,14 @@ const AdminHeader = ({mode}) => {
 					 <li className={styles["name"]}>
               {isLoggedIn && (
                 <a color="#fff" href="#home">
-                  <Avatar
+                  {/* <Avatar
                     name={displayName}
                     size={35}
                     hashValue="id_124"
 									// marginRight={16}
 									className={styles.avatar}
-                  />
+                  /> */}
+								<AvatarPopover displayName={displayName}/>
                 </a>
               )}
             </li>
