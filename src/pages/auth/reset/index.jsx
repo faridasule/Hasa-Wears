@@ -1,41 +1,43 @@
-import styles from "../auth.module.scss";
-import { Link } from "react-router-dom";
-import resetImg from "../../../assets/forgot.png";
-import Card from "../../../components/card/index";
-import { useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import { auth } from "../../../firebase/config";
-import { sendPasswordResetEmail } from "firebase/auth";
-import Loader from "../../../components/loader/index";
-import { InlineAlert } from "evergreen-ui";
+import styles from '../auth.module.scss'
+import { Link } from 'react-router-dom'
+import resetImg from '../../../assets/forgot.png'
+import Card from '../../../components/card/index'
+import { useState } from 'react'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { toast } from 'react-toastify'
+import { auth } from '../../../firebase/config'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import Loader from '../../../components/loader/index'
+import { InlineAlert } from 'evergreen-ui'
 
 const Reset = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   // Formik setup with initial values, validation schema, and submit handler
   const formik = useFormik({
     initialValues: {
-      email: "",
+      email: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Email is required"),
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Email is required'),
     }),
     onSubmit: (values, { setSubmitting }) => {
-      setIsLoading(true);
+      setIsLoading(true)
 
       sendPasswordResetEmail(auth, values.email)
         .then(() => {
-          setIsLoading(false);
-          toast.success("Check your email for a reset link");
+          setIsLoading(false)
+          toast.success('Check your email for a reset link')
         })
         .catch((error) => {
-          setIsLoading(false);
-          toast.error(error.message);
-        });
+          setIsLoading(false)
+          toast.error(error.message)
+        })
     },
-  });
+  })
 
   return (
     <>
@@ -53,15 +55,28 @@ const Reset = () => {
               <input
                 type="text"
                 placeholder="Email"
-                {...formik.getFieldProps("email")}
+                {...formik.getFieldProps('email')}
               />
               {formik.touched.email && formik.errors.email ? (
-                <InlineAlert intent="danger" className={styles.danger} marginTop={"5px"}>
+                <InlineAlert
+                  intent="danger"
+                  className={styles.danger}
+                  marginTop={'5px'}
+                >
                   {formik.errors.email}
                 </InlineAlert>
               ) : null}
 
-              <button type="submit" style={{backgroundColor: '#4094F7', color: "#fff", marginTop: '18px'}} className="--btn --btn-block" disabled={formik.isSubmitting}>
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: '#4094F7',
+                  color: '#fff',
+                  marginTop: '18px',
+                }}
+                className="--btn --btn-block"
+                disabled={formik.isSubmitting}
+              >
                 Reset Password
               </button>
               <div className={styles.links}>
@@ -77,8 +92,7 @@ const Reset = () => {
         </Card>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Reset;
-
+export default Reset

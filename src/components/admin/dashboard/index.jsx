@@ -18,10 +18,11 @@ import {
 import useFetchCollection from "../../../custopm-hook/useFetchCollection";
 import Chart from "../../chart/index";
 import PieChart from "../../piechart";
+import { formatNaira } from "../../../@core/utils";
 
 //Icons
 const earningIcon = <AiFillDollarCircle size={20} color="#BDBDBD" />;
-const productIcon = <BsCart4 size={25} color="#BDBDB" />;
+const productIcon = <BsCart4 size={22} color="#BDBDBD" />;
 const ordersIcon = <FaCartArrowDown size={20} color="#BDBDBD" />;
 
 const Dashboard = () => {
@@ -52,7 +53,7 @@ console.log(totalOrderAmount, 'amount')
         <InfoBox
           cardClass={`${styles.card} ${styles.card1}`}
           title={"Total Revenue"}
-          count={`₦${totalOrderAmount}`}
+          count={formatNaira(totalOrderAmount)}
           icon={earningIcon}
         />
         <InfoBox

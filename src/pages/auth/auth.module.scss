@@ -20,22 +20,21 @@
       text-align: left;
       font-size: 24px;
     }
-    p{
+    p {
       font-weight: 400;
       line-height: 24px;
       font-size: 14px;
     }
 
-    
-      h5 {
-        text-align: center;
-        margin: 2rem;
-        font-weight: 400;
-        font-size: 14px;
-        color: #777;
-      }
+    h5 {
+      text-align: center;
+      margin: 2rem;
+      font-weight: 400;
+      font-size: 14px;
+      color: #777;
+    }
     form {
-margin-top: 20px !important;
+      margin-top: 20px !important;
       input[type='text'],
       input[type='email'],
       input[type='password'] {
@@ -50,16 +49,15 @@ margin-top: 20px !important;
         outline: none;
       }
 
-          p{
-      font-weight: 400;
-      line-height: 24px;
-    }
+      p {
+        font-weight: 400;
+        line-height: 24px;
+      }
       .links {
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
       }
-
     }
     .register {
       display: flex;
@@ -107,78 +105,65 @@ margin-top: 20px !important;
   }
 }
 
+/* Style for Small Screens */
+
 @media screen and (max-width: 900px) {
   .img {
     display: none;
   }
-
-
 }
 
 @media screen and (max-width: 700px) {
-
-  .auth{
+  .auth {
     margin: 0 !important;
-    .form{
+    .form {
       width: 35rem;
-          padding: 2.5rem 1.5rem;
-
-
-}
+      padding: 2.5rem 1.5rem;
+    }
   }
   .img {
     display: none;
   }
-
-
 }
 @media screen and (max-width: 460px) {
-  .auth{
+  .auth {
+    min-height: 70vh;
     margin: 0 !important;
     background-color: #eee;
-    .form{
+    .form {
       width: 32rem;
-          padding: 2.5rem 1rem;
-
-
-}
+      padding: 2.5rem 0rem;
+    }
   }
   .img {
     display: none;
   }
 
-  .card{
+  .card {
     box-shadow: none !important;
     border: none !important;
   }
 
+  .passwordToggle {
+    position: absolute;
+    right: 30px !important;
+  }
 }
-
-
 
 @media screen and (max-width: 350px) {
-
-  .auth{
+  .auth {
     margin: 0 !important;
-    .form{
+    .form {
       width: 20rem;
-          padding: 2rem .5rem;
-
-
-}
+      padding: 2rem 0.5rem;
+    }
   }
   .img {
     display: none;
   }
 
-  .card{
+  .card {
     box-shadow: none !important;
     border: none !important;
   }
-
-
-
-
-
 }
-

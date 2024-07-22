@@ -11,7 +11,8 @@ import {
 import Loader from "../../content-loader/index";
 import styles from "./order.module.scss";
 import { ChevronRightIcon, ChevronDownIcon } from "evergreen-ui";
-import { Pagination } from 'evergreen-ui'; // Import Pagination component
+import { Pagination } from 'evergreen-ui';
+import { formatNaira } from "../../../@core/utils";
 
 const Orders = () => {
   const { data, isLoading } = useFetchCollection("orders");
@@ -33,9 +34,7 @@ const Orders = () => {
     navigate(`/admin/order-details/${id}`);
   };
 
-  const formatNaira = (amount) => {
-    return '₦' + amount.toLocaleString();
-  };
+
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);

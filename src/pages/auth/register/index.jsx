@@ -4,7 +4,10 @@ import * as Yup from 'yup'
 import styles from '../auth.module.scss'
 import Card from '../../../components/card'
 import { Link, useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth'
 import { auth } from '../../../firebase/config'
 import Loader from '../../../components/loader'
 import { toast } from 'react-toastify'
@@ -12,7 +15,7 @@ import { InlineAlert, EyeOffIcon, EyeOpenIcon } from 'evergreen-ui'
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false) // State for password visibility
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
   // Formik setup with initial values, validation schema, and submit handler
@@ -69,7 +72,10 @@ const Register = () => {
         <Card cardClass={styles.card}>
           <div className={styles.form}>
             <h2>Sign Up</h2>
-            <p>We’ll get you up to speed to verify your details after submitting your details.</p>
+            <p>
+              We’ll get you up to speed to verify your details after submitting
+              your details.
+            </p>
             <form onSubmit={formik.handleSubmit}>
               <input
                 type="text"
@@ -97,7 +103,11 @@ const Register = () => {
                   onClick={togglePasswordVisibility}
                   className={styles.passwordToggle}
                 >
-                  {showPassword ? <EyeOpenIcon color="#999999" /> : <EyeOffIcon color="#999999" />}
+                  {showPassword ? (
+                    <EyeOpenIcon color="#999999" />
+                  ) : (
+                    <EyeOffIcon color="#999999" />
+                  )}
                 </button>
               </div>
               {formik.touched.password && formik.errors.password ? (
@@ -129,7 +139,11 @@ const Register = () => {
                 type="submit"
                 className="--btn --btn-block"
                 disabled={formik.isSubmitting}
-                style={{ backgroundColor: '#4094F7', color: '#fff', marginTop: '18px' }}
+                style={{
+                  backgroundColor: '#4094F7',
+                  color: '#fff',
+                  marginTop: '18px',
+                }}
               >
                 Sign Up
               </button>

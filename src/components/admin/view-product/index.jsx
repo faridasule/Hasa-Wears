@@ -33,6 +33,7 @@ import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import AddProduct from '../../../components/admin/add-product/index';
+import { formatNaira } from '../../../@core/utils';
 
 const ViewProducts = () => {
   const [search, setSearch] = useState('');
@@ -210,7 +211,7 @@ const ViewProducts = () => {
                         </td>
                         <td className={styles.hideOnMobile}>{name}</td>
                         <td className={styles.hideOnMobile}>{category}</td>
-                        <td className={styles.hideOnMobile}>{`$${price}`}</td>
+                        <td className={styles.hideOnMobile}>{formatNaira(price)}</td>
                         <td
                           className={`${styles.icons} ${styles.hideOnMobile}`}
                         >
@@ -260,7 +261,7 @@ const ViewProducts = () => {
                                 <b>Category:</b> {category}
                               </p>
                               <p>
-                                <b>Price:</b> ${price}
+                                <b>Price:</b> {formatNaira(price)}
                               </p>
                                  <FaEdit
                             size={18}

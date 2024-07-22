@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import useFetchDocument from '../../../custopm-hook/useFetchDocument'
 import styles from './order-details.module.scss'
-import spinnerImg from '../../../assets/spinner.jpg'
-import { Link, useParams } from 'react-router-dom'
+import {useParams } from 'react-router-dom'
 import ChangeOrderStatus from '../change-order-status/index'
 import { setBreadCrumb } from '../../../redux/features/siteSlice'
 import BreadCrumbLayout from '../../bread-crumb/index'
 import { useDispatch } from 'react-redux'
 import { ChevronRightIcon, ChevronDownIcon } from 'evergreen-ui'
 import Loader from '../../content-loader'
+import { formatNaira } from '../../../@core/utils'
 
 const OrderDetails = () => {
   const [order, setOrder] = useState(null)
@@ -60,9 +60,6 @@ const OrderDetails = () => {
     }
   }
 
-  const formatNaira = (amount) => {
-    return '₦' + amount.toLocaleString()
-  }
 
   if (!order) {
     return <Loader/>
