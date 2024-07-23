@@ -34,7 +34,7 @@ const Chart = () => {
       {
         label: 'Order Count',
         data: [placed, processing, shipped, delivered],
-        backgroundColor: ['#064E3B', '#047857', '#33e799', '#6EE7B7'],
+        backgroundColor: [ '#003F7F','#0071c5' , '#7CB9E8', '#D6E0FF'],
         borderColor: '#fff',
             borderWidth: 2,
         

@@ -78,19 +78,11 @@ const Chart = () => {
     }
   });
 
-  // Debugging: log the revenueMap to verify data categorization
-  console.log("Revenue Map:", Array.from(revenueMap.entries()));
-
   // Extract labels and data for the chart
   const labels = Array.from(revenueMap.keys());
   const dataLessThan20k = Array.from(revenueMap.values()).map(item => item.lessThan20k);
   const dataLessThan40k = Array.from(revenueMap.values()).map(item => item.lessThan40k);
   const dataAbove40k = Array.from(revenueMap.values()).map(item => item.above40k);
-
-  // Debugging: log the extracted data to verify correctness
-  console.log("Data < 20,000:", dataLessThan20k);
-  console.log("Data 20,000 - 40,000:", dataLessThan40k);
-  console.log("Data > 40,000:", dataAbove40k);
 
   const chartData = {
     labels,
@@ -98,14 +90,18 @@ const Chart = () => {
       {
         label: "Revenue < 20,000",
         data: dataLessThan20k,
-        backgroundColor: "#064E3B",
+        backgroundColor: "#003F7F",
       },
       {
-        label: "20,000 > Revenue",
+        label: "20,000 <= Revenue <= 40,000",
         data: dataLessThan40k,
-        backgroundColor: "#047857",
+        backgroundColor: "#D6E0FF",
       },
-  
+      {
+        label: "Revenue > 40,000",
+        data: dataAbove40k,
+        backgroundColor: "#4D79FF",
+      },
     ],
   };
 

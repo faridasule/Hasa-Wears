@@ -138,7 +138,7 @@ const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartItems.map((cart, index) => {
+                  {cartItems?.map((cart, index) => {
                     const { id, name, price, imageURL, cartQuantity, sizes } = cart
                     return (
                       <React.Fragment key={id}>
@@ -152,9 +152,7 @@ const Cart = () => {
                                 style={{ width: '100px' }}
                               />
                             </div>
-                              {/* <p>
-                              <b>{name}</b>
-                            </p> */}
+                        
                           </td>
 
                                                     <td>{name}</td>
@@ -162,7 +160,7 @@ const Cart = () => {
                           <td className={styles.hideOnMobile}>
                             {formatNaira(price)}
                           </td>
-                                                                              <td>{capitalizeWords( sizes.join(', '))}</td>
+                                                                              <td>{capitalizeWords(sizes?.join(', '))}</td>
 
                           <td className={styles.hideOnMobile}>
                             <div className={styles.count}>

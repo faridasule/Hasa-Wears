@@ -146,7 +146,7 @@ const ProductDetails = () => {
                   <p className={styles.sizes}>
                     <b>Sizes:</b>
                     <ul>
-                      {product.sizes.map((size) => (
+                      {product?.sizes?.map((size) => (
                         <li
                           key={size}
                           className={

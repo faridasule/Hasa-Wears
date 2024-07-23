@@ -10,9 +10,6 @@ import OrderHistory from "./pages/order-history/page";
 import ReviewProducts from "./components/review-product/index"
 import ContactPage from "./pages/contact/page";
 import AboutPage from "./pages/about/page";
-
-
-
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import NotFound from './pages/not-found/page';

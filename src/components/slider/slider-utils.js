@@ -1,22 +1,37 @@
+import slideOne from "../../assets/slide-one.jpg";
+import slideTwo from "../../assets/slide-two.jpg";
+import slideThree from "../../assets/slide-three.jpg";
+import slideFour from "../../assets/slide-four.jpg";
+import slideFive from "../../assets/slide-five.jpg";
+
+
+
+
+
 export const sliderData = [
   {
-    image: "https://i.ibb.co/y5MH43P/young-woman-shopping-clothes.jpg",
+    image: slideOne,
     heading: "Shoes Villa",
     desc: "Discover the latest trends in footwear for all occasions.",
   },
   {
-    image: "https://i.ibb.co/ThYhTCX/female-friends-out-shopping-together.jpg",
+    image: slideTwo,
     heading: "Women Fashion",
     desc: "Explore our collection of women's clothing, accessories, and more.",
   },
   {
-    image: "https://i.ibb.co/HXjD3V0/bg-2.jpg",
+    image: slideThree,
     heading: "Men Fashion",
     desc: "Find the perfect look with our men's clothing and accessories.",
   },
   {
-    image: "https://i.ibb.co/H2FRmtV/bg-3.jpg",
-    heading: "Awesome Gadgets",
-    desc: "Get the latest gadgets and accessories at unbeatable prices.",
+    image: slideFour,
+    heading: "Awesome Accessories",
+    desc: "Get the latest accessories at unbeatable prices.",
+  },
+    {
+    image: slideFive,
+    heading: "Trending Bags",
+    desc: "Find the perfect look with our cute ladies bags.",
   },
 ];
