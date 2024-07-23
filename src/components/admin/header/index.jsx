@@ -97,10 +97,10 @@ const AdminHeader = ({mode}) => {
 
 					<ul className={styles.nav}>
 						<li>
-							<a href={{ pathname: "/" }}>Home</a>
+							<a href="/">Home</a>
 						</li>
 						<li>
-							<a href={{ pathname: "/courses" }}>About</a>
+							<a href="/about" >About</a>
 						</li>
 						{/* <li>
 							<Link href={{ pathname: "/community" }}>Community</Link>
@@ -109,7 +109,7 @@ const AdminHeader = ({mode}) => {
 							<Link href={{ pathname: "/contact-us" }}>Contact Us</Link>
 						</li> */}
 						<li>
-							<a href={{ pathname: "/tutors" }}>Contact Us</a>
+							<a href={{ pathname: "/contact" }}>Contact Us</a>
 						</li>
 					</ul>
 				<ul className={styles.started}>

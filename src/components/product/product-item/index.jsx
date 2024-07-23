@@ -5,6 +5,10 @@ import {
   ADD_TO_CART,
   CALCULATE_TOTAL_QUANTITY,
 } from '../../../redux/features/cartSlice'
+import {
+  ADD_TO_WISHLIST,
+  selectWishlistItems,
+} from "../../../redux/features/wishlistSlice";
 import Card from '../../card/index'
 import styles from './product-item.module.scss'
 import { IoCartOutline } from 'react-icons/io5'
@@ -52,8 +56,8 @@ const ProductItem = ({ grid, id, name, price, imageURL }) => {
   }
 
   const addToWishlist = (product) => {
-    // Implement and dispatch the wishlist action here
-  }
+    dispatch(ADD_TO_WISHLIST(product));
+  };
 
   const formatPrice = (price) => {
     return price
