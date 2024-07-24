@@ -59,7 +59,7 @@ const Slider = () => {
               <>
                 <img src={image} alt="slide" />
                 <div className="content">
-                  <p style={{color: '#FFCC00', fontWeight: '400', fontSize: '40px', lineHeight: '46px'}}>Hot Sales!</p>
+                  <p style={{color: '#FFCC00', fontWeight: '400', fontSize: '36px', lineHeight: '46px'}}>Hot Sales!</p>
                   <h2>{heading}</h2>
                   <p>{desc}</p>
                   {/* <hr /> */}

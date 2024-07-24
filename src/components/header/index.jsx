@@ -25,6 +25,9 @@ import {
 import { HiShoppingCart } from "react-icons/hi2";
 import Wishlist from "../wishlist";
 import AvatarPopover from "../avartar-popovers/index";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { Diversity1 } from "@mui/icons-material";
+
 
 const logo = (
   <div className={styles.logo}>
@@ -140,7 +143,14 @@ const Header = () => {
   return (
     <header className={scrollPage ? `${styles.fixed}` : null}>
       <div className={styles.header}>
-        {logo}
+          <div className={styles['logo-wrapper']}>
+        
+          <div  className={styles["menu-icon"]}>
+            <RxHamburgerMenu color="#252C32" size={25} onClick={toggleMenu} />
+          </div>
+                  {logo}
+
+        </div>
         <nav  className={showMenu ? `${styles["show-nav"]}`:`${styles["hide-nav"]}`} >
           <div
             className={
@@ -156,18 +166,14 @@ const Header = () => {
               {logo}
               <FaTimes size={20} color="#252C32" onClick={hideMenu} />
             </li>
-            <li className={styles["name"]}>
+            {/* <li className={styles["name"]}>
               {isLoggedIn && (
                 <a color="#fff" href="#home">
-                  <Avatar
-                    name={displayName}
-                    size={60}
-                    hashValue="id_124"
-                    marginRight={16}
-                  />
+                                           <AvatarPopover displayName={displayName} />
+
                 </a>
               )}
-            </li>
+            </li> */}
           
             <li>
               <NavLink to="/" className={activeLink}>
@@ -191,11 +197,11 @@ const Header = () => {
                 </Link>
               </AdminOnlyLink>
             </li>
-           <li className={styles['cart-container']}>
+           <li  onClick={() => navigate("/cart/")} className={styles['cart-container']}>
     Cart {cart}
   
             </li>
-               <li className={styles['cart-container']}>
+               <li onClick={() => setShowWishlistDialog(true)}  className={styles['cart-container']}>
     Wishlist {wishlist}
 </li>
 
@@ -210,7 +216,7 @@ const Header = () => {
                 </NavLink>
               )} */}
               <div className={styles.qty}>
-                <div className={styles.cart}>{cart}</div>
+                <div           className={styles.cart}>{cart}</div>
               <div className={styles.cart}>{wishlist}</div>
               </div>
                 {!isLoggedIn && (
@@ -240,12 +246,21 @@ const Header = () => {
             </span>
           </div>
         </nav>
-        <div className={styles["menu-icon"]}>
-        
-          <div style={{ marginLeft: "20px" }}>
-            <HiOutlineMenuAlt3 color="#252C32" size={25} onClick={toggleMenu} />
+                 <div className={styles['mobile-avartar']}>
+              {isLoggedIn && (
+                <a color="#fff" href="#home">
+                  {/* <Avatar
+                    name={displayName}
+                    size={40}
+                    hashValue="id_124"
+                    marginLeft={16}
+                  /> */}
+                          <AvatarPopover displayName={displayName} />
+
+                </a>
+          )}
           </div>
-        </div>
+      
       </div>
 
       {/* Wishlist Dialog */}
