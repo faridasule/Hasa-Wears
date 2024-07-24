@@ -168,13 +168,7 @@ const Header = () => {
                 </a>
               )}
             </li>
-            <li>
-              <AdminOnlyLink>
-                <Link to="/admin/dashboard">
-                  <button className="--btn">Dashboard</button>
-                </Link>
-              </AdminOnlyLink>
-            </li>
+          
             <li>
               <NavLink to="/" className={activeLink}>
                 Home
@@ -189,6 +183,13 @@ const Header = () => {
               <NavLink to="/contact" className={activeLink}>
                 Contact Us
               </NavLink>
+            </li>
+              <li>
+              <AdminOnlyLink>
+                <Link to="/admin/dashboard">
+                  <button className="--btn">Dashboard</button>
+                </Link>
+              </AdminOnlyLink>
             </li>
            <li className={styles['cart-container']}>
     Cart {cart}

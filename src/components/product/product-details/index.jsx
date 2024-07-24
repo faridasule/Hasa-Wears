@@ -21,6 +21,8 @@ import BreadCrumbLayout from "../../bread-crumb";
 import { FaHeart } from "react-icons/fa";
 import Loader from "../../content-loader";
 import { capitalizeWords } from "../../../@core/utils";
+import StarRating from '../../star/index'; // Import the custom star rating component
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -115,18 +117,12 @@ const ProductDetails = () => {
                   <h3>{product.name}</h3>
                   <h3>{formatPrice(product.price)}</h3>
                   <div className={styles.ratingSection}>
-                    <StarsRating
-                      count={5}
-                      value={averageRating}
-                      size={15}
-                      color={"#005EB2"}
-                      activeColor={"#005EB2"}
-                      isHalf={true}
-                      edit={false}
-                      emptyIcon={<i className="far fa-star"></i>}
-                      halfIcon={<i className="fa fa-star-half-alt"></i>}
-                      filledIcon={<i className="fa fa-star"></i>}
-                    />
+                    <StarRating
+            count={5}
+            value={averageRating}
+            size={15}
+            color={'#F8C51B'}
+          />
                     <span className={styles.commentCount}>
                       ({`Total ${filteredReviews.length} Received`})
                     </span>
@@ -236,17 +232,18 @@ const ProductDetails = () => {
                           <div className={styles["review-count"]}>
                             <div className={styles["review-wrap"]}>
                               <h5>{eachReview.userName}</h5>
-                              <div style={{ marginLeft: "-10px" }}>
-                                <StarsRating
-                                  color="#005EB2"
-                                  starRatedColor="#005EB2"
-                                  value={eachReview.rate}
+                              <div style={{marginTop: '1rem'}}>
+                                 <StarRating
+            count={5}
+            value={eachReview.rate}
+            size={20}
+                                  color={'#F8C51B'}
                                 />
                               </div>
                             </div>
                           </div>
                         </div>
-                        <p style={{ marginTop: "16px" }}>{eachReview.review}</p>
+                        <p style={{ marginTop: "16px", color: '#000' }}>{eachReview.review}</p>
                       </div>
                     ))}
                   </div>

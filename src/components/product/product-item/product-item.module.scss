@@ -152,6 +152,8 @@
     .ratingSection{
       display: flex;
       align-items: center;
+      margin-left: 1rem;
+      gap: 1rem;
     }
 
     .commentCount{
@@ -159,7 +161,7 @@
       font-weight: 500 !important;
       font-size: 14px;
       text-align: center;
-      margin: 0 !important;
+      margin: -3px 0 0 0 !important;
       padding: 0 !important;
     }
      .cart {

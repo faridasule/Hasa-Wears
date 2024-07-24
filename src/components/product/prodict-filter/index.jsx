@@ -10,7 +10,9 @@ import {
   selectMinPrice,
   selectProducts,
 } from "../../../redux/features/productSlice";
+import { Slider } from "@mui/material";
 import styles from "./product-filter.module.scss";
+import { formatNaira } from "../../../@core/utils";
 
 const ProductFilter = () => {
   const [category, setCategory] = useState("All");
@@ -50,6 +52,10 @@ const ProductFilter = () => {
     setBrand(brd);
     setCategory(""); // Clear the category when brand changes
     dispatch(FILTER_BY_BRAND({ products, brand: brd }));
+  };
+
+  const handlePriceChange = (event, newValue) => {
+    setPrice(newValue);
   };
 
   const clearFilters = () => {
@@ -95,21 +101,21 @@ const ProductFilter = () => {
         ))}
       </div>
       <h4>Price</h4>
-      <p>{`$${price}`}</p>
+      <p style={{color: '#000', fontWeight: '400'}}>{`${formatNaira(price)}`}</p>
       <div className={styles.price}>
-        <input
-          type="range"
+        <Slider
           value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          onChange={handlePriceChange}
           min={minPrice}
           max={maxPrice}
-          className={styles.range}
-          
+          valueLabelDisplay="auto"
+          aria-labelledby="range-slider"
+          style={{width: '80%'}}
         />
       </div>
       <br />
       <button className="--btn --btn-danger" onClick={clearFilters}>
-        Clear 
+        Clear
       </button>
     </div>
   );
