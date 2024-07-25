@@ -73,14 +73,14 @@ const ProductItem = ({ grid, id, name, price, imageURL }) => {
         )}
         <div className={styles.iconContainer}>
           <IoCartOutline
-            size={20}
+            size={18}
             className={styles.cartIcon}
             color="#007AFF"
             title='add-cart'
             onClick={() => addToCart({ id, name, price, imageURL })}
           />
           <IoHeartOutline
-            size={20}
+            size={18}
             className={styles.wishlistIcon}
             color="#007AFF"
             title='add-wishlist'

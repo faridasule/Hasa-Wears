@@ -296,7 +296,7 @@ const Cart = () => {
                       marginTop: '14px',
                     }}
                   >
-                    Continue Shipping
+                    Continue Shopping
                   </button>
                 </Card>
               </div>

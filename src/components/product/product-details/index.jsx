@@ -181,7 +181,7 @@ const ProductDetails = () => {
                     </>
                   )}
                   <button
-                    style={{ width: "50%" }}
+                    style={{ width: "60%" }}
                     className="--btn --btn-primary"
                     onClick={() => addToCart(product, selectedSizes)}
                   >
@@ -189,10 +189,10 @@ const ProductDetails = () => {
                   </button>
                   <button
                     style={{
-                      width: "50%",
+                      width: "60%",
                       background: "transparent",
                       display: "flex",
-                      gap: "14px",
+                        gap: "10px",
                     }}
                     className="--btn"
                     onClick={() => addToWishlist(product)}

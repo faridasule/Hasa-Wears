@@ -19,7 +19,7 @@ const OrderHistory = () => {
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Number of items per page
+  const itemsPerPage = 6; // Number of items per page
 
   const breadcrumb = [
     { title: 'Home', url: '/' },

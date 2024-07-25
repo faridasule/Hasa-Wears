@@ -1,10 +1,10 @@
 .section {
-    padding: 30px 70px 1000px 70px;
+    padding: 30px 70px 300px 70px;
 
-  height: 100svh;
+  min-height: 100vh;
 
   @media (max-width: 768px) {
-        padding: 30px  10px 1500px 10px;
+        padding: 30px  10px 50px 10px;
 
 
     .showOnMobile{

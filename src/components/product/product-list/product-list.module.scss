@@ -119,6 +119,30 @@
 // }
 }
 
+.sort-menu {
+  width: 300px !important;
+  padding: 30px;
+  .evergreen-select-menu {
+    background-color: #f5f5f5; // Background color
+    border: 1px solid #dcdcdc; // Border style
+    border-radius: 4px; // Rounded corners
+    padding: 200px; // Padding inside the menu
+  }
+
+  .evergreen-select-menu-button {
+    background-color: #ffffff; // Button background color
+    color: #333333; // Text color
+    border: 1px solid #e0e0e0; // Button border
+    border-radius: 4px; // Rounded corners
+    padding: 8px; // Padding inside the button
+    cursor: pointer; // Pointer cursor on hover
+    &:hover {
+      background-color: #e0e0e0; // Background color on hover
+    }
+  }
+}
+
+
 @media(max-width: 1200px) {
 .product-list{
   // background-color: red;

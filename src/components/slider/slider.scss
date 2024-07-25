@@ -69,7 +69,7 @@
 }
 
 .arrow {
-  border: 2px solid #005eb2;
+  border: 2px solid white;
   border-radius: 50%;
   background: transparent;
   color: #fff;
@@ -81,19 +81,19 @@
   transform: translateY(-50%);
   z-index: 2;
   font-weight: 900;
-    background: #fff;
+    background: var(--color-dark);
 
 }
 
 
 .next {
   right: 1.5rem;
-  color: #005eb2;
+  color: #fff;
 }
 
 .prev {
   left: 1.5rem;
-  color: #005eb2;
+  color: #fff;
 }
 
 hr {

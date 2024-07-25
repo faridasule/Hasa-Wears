@@ -25,23 +25,24 @@ const Footer = () => {
           </p>
         </div>
         <div className={styles['footer-column']}>
-          <h3>Products</h3>
+          <h3>Categories</h3>
           <ul>
-            <li>Product 1</li>
-            <li>Product 2</li>
-            <li>Product 3</li>
-            <li>Product 4</li>
-            <li>Product 5</li>
+            <li>Men</li>
+            <li>Women</li>
+            <li>Footwear</li>
+            <li>Electronics</li>
+            <li>Accessories</li>
+
           </ul>
         </div>
         <div className={styles['footer-column']}>
           <h3>Company</h3>
           <ul>
             <li>
-              <a href="#">About Us</a>
+              <a href="/about">About Us</a>
             </li>
             <li>
-              <a href="#">Contact Us</a>
+              <a href="/contact">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -62,11 +63,10 @@ const Footer = () => {
       </div>
 
       <div className={styles['footer-bottom']}>
-        <p>© 2024 ReedoShop. All rights reserved.</p>
+        <p>© 2024 HasaWears. All rights reserved.</p>
         <div className={styles['socials-wrapper']}>
           <div className={styles.message}>
-            {' '}
-            <FaEnvelope color="#fff" />
+            <FaEnvelope fontSize={'18px'} color="#fff" />
           </div>
 
           <div className={styles['social-icons']}>

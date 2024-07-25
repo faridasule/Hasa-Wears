@@ -52,14 +52,25 @@ const NavBar = ({ mode }) => {
       )}
 
       <nav className={styles.nav}>
+     
+         
         <ul>
+             {
+          mode !== 'Full' &&
+            <li onClick={openAddProductDialog} style={{paddingTop: '3rem'}} >
+            <NavLink
+            >
+                <FaPlus title='create product'color="#007AFF" size={20} />
+            </NavLink>
+          </li>
+}
           <li>
             <NavLink
               to="/admin/dashboard"
               className={mode === 'Full' ? activeLink : 'link'}
             >
               <div>
-                <AiOutlineHome fontWeight={'200'} color="#000000" size={25} />
+                <AiOutlineHome title='dashboard' color="#252C32" size={25} />
               </div>
               {mode === 'Full' ? <p>Dashboard</p> : ''}
             </NavLink>
@@ -71,7 +82,7 @@ const NavBar = ({ mode }) => {
               className={mode === 'Full' ? activeLink : 'link'}
             >
               <div>
-                <FaRegFolder className={mode === 'Full' ? '' : 'link'} color="#000000" size={20} />
+                <FaRegFolder title='manage product' className={mode === 'Full' ? '' : 'link'} color="#252C32" size={20} />
               </div>
               {mode === 'Full' ? <p>Manage Products</p> : ''}
             </NavLink>
@@ -83,7 +94,7 @@ const NavBar = ({ mode }) => {
               className={mode === 'Full' ? activeLink : 'link'}
             >
               <div>
-                <HiOutlineChartBarSquare color="#000000" size={25} />
+                <HiOutlineChartBarSquare title='manage orders' color="#252C32" size={25} />
               </div>
               {mode === 'Full' ? <p>Manage Orders</p> : ''}
             </NavLink>
@@ -110,11 +121,7 @@ const NavBar = ({ mode }) => {
         <DialogContent>
           <AddProduct dialogMode={dialogMode} onClose={handleClose} />
         </DialogContent>
-        {/* <DialogActions> */}
-          {/* <button className="--btn --btn-primary" onClick={handleClose}>
-            Close
-          </button> */}
-        {/* </DialogActions> */}
+    
       </Dialog>
     </div>
   );
