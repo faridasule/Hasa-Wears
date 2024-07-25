@@ -145,3 +145,12 @@
   margin-top: -8px;
   margin-bottom: 8px;
 }
+
+@media screen and (max-width: 700px) {
+  .product{
+  form{
+width: 90%;
+  }
+  }
+
+}

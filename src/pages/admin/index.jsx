@@ -6,7 +6,6 @@ import NavBar from "../../components/admin/navbar";
 import OrderDetails from "../../components/admin/order-details";
 import Orders from "../../components/admin/orders";
 import ViewProducts from "../../components/admin/view-product";
-
 import styles from "./admin.module.scss";
 import AdminLayout from "../../components/layout/admi-layout";
 
@@ -20,7 +19,9 @@ const Admin = () => {
           <Route path="all-products" element={<ViewProducts />} />
           <Route path="add-product/:id" element={<AddProduct />} />
           <Route path="orders" element={<Orders />} />
-          <Route path="order-details/:id" element={<OrderDetails />} />
+            <Route path="order-details/:id" element={<OrderDetails />} />
+                      <Route path="order-details/:id" element={<OrderDetails />} />
+
         </Routes>
         </div>
         </AdminLayout>

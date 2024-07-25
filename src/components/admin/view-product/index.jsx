@@ -216,12 +216,12 @@ const ViewProducts = () => {
                           className={`${styles.icons} ${styles.hideOnMobile}`}
                         >
                           <FaEdit
-                            size={18}
+                            size={20}
                             color="#007AFF"
                             onClick={() => openEditProductDialog(id)}
                           />
                           <RiDeleteBin2Fill
-                            size={18}
+                            size={20}
                             color="#FF3B30"
                             onClick={() => confirmDelete(id, imageURL)}
                           />
