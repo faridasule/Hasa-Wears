@@ -2,7 +2,6 @@
   padding: 10px 20px;
   width: 100%;
   overflow-x: auto;
-  min-height: 100svh;
 
   .pagination {
     display: flex;
@@ -112,6 +111,10 @@
     }
 
 @media (max-width: 600px) {
+  .table{
+      min-height: 150svh;
+
+  }
   td:nth-child(6) {
     button {
       background-color: transparent;
