@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./not-found.module.scss";
-import notFound from "../../assets/404.jpg";
+import notFound from "../../assets/404.png";
 
 
 const NotFound = () => {
   return (
     <div className={styles["not-found"]}>
       <div>
-              <img style={{backgroundColor: "#bbd7ff"}} src={notFound} width={'100%'}/>
+              <img style={{backgroundColor: "transparent"}} src={notFound} width={'100%'}/>
               <div>
-                <p>Opppppsss, page not found.</p>
+                <p style={{color: '#000'}}>We can't seems to find the page you seek. Kindly return back home.</p>
 
                    <button className="--btn">
           <Link to="/">&larr; Back To Home</Link>

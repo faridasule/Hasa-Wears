@@ -132,6 +132,9 @@
 
 
 @media (max-width: 500px) {
+  .table{
+    min-height: 200svh;
+  }
   td:nth-child(6) {
     button {
       background-color: transparent;
@@ -159,6 +162,10 @@
 
   .showOnMobile {
     display: block;
+  }
+
+  .icons button{
+    margin-top: 40px;
   }
 }
 

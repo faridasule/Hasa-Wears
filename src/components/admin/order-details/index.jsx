@@ -19,7 +19,7 @@ const OrderDetails = () => {
 
   const breadcrumb = [
     { title: 'Dashboard', url: '/dashboard' },
-    { title: 'Orders', url: '/orders' },
+    { title: 'Orders', url: '/admin/orders' },
     { title: 'Order Details' },
   ]
 
