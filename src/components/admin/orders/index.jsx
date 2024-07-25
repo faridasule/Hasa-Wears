@@ -10,8 +10,7 @@ import {
 } from "../../../redux/features/orderSlice";
 import Loader from "../../content-loader/index";
 import styles from "./order.module.scss";
-import { ChevronRightIcon, ChevronDownIcon } from "evergreen-ui";
-import { Pagination } from 'evergreen-ui';
+import { ChevronRightIcon, ChevronDownIcon, Pagination } from "evergreen-ui";
 import { formatNaira } from "../../../@core/utils";
 
 const Orders = () => {
@@ -34,17 +33,15 @@ const Orders = () => {
     navigate(`/admin/order-details/${id}`);
   };
 
-
-
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const [ordersPerPage] = useState(10);
+  const ordersPerPage = 10;
 
   // Calculate page data
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
   const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
-  
+
   const totalPages = Math.ceil(orders.length / ordersPerPage);
 
   const handlePageChange = (page) => {
@@ -57,11 +54,10 @@ const Orders = () => {
 
   const handlePreview = (e, index) => {
     e.stopPropagation();
-    const updateShowPreview = [...showPreview];
-    updateShowPreview[index] = !updateShowPreview[index];
-    setShowPreview(updateShowPreview);
+    const updatedPreview = [...showPreview];
+    updatedPreview[index] = !updatedPreview[index];
+    setShowPreview(updatedPreview);
 
-    // Close all previews when screen size is larger than 600px
     if (window.innerWidth > 600) {
       setShowPreview(Array(orders.length).fill(false));
     }
@@ -102,7 +98,9 @@ const Orders = () => {
                   return (
                     <React.Fragment key={id}>
                       <tr onClick={() => handleClick(id)}>
-                        <td className={styles.hideOnMobile}>{index + 1 + indexOfFirstOrder}</td>
+                        <td className={styles.hideOnMobile}>
+                          {index + 1 + indexOfFirstOrder}
+                        </td>
                         <td>{orderDate} at {orderTime}</td>
                         <td className={styles.hideOnMobile}>{id}</td>
                         <td className={styles.hideOnMobile}>
@@ -139,28 +137,17 @@ const Orders = () => {
                             )}
                           </button>
                         </td>
-                        <td className={styles.hideOnMobile}>View more</td>
-
                       </tr>
                       {showPreview[index] && (
                         <tr className={styles['additional-row']}>
                           <td colSpan="6">
                             <div className={styles['toggle-content']}>
-                              <p>
-                                <b>Id:</b> {id}
-                              </p>
-                              <p>
-                                <b>Price:</b> {formatNaira(orderAmount)}
-                              </p>
-                              <p className={
-                                orderStatus !== "Delivered"
-                                  ? styles.pending
-                                  : styles.delivered
-                              }>
+                              <p><b>Id:</b> {id}</p>
+                              <p><b>Price:</b> {formatNaira(orderAmount)}</p>
+                              <p className={orderStatus !== "Delivered" ? styles.pending : styles.delivered}>
                                 <b>Status:</b> {orderStatus}
                               </p>
-                                <p style={{color: '#007AFF'}} onClick={() => handleClick(id)}> View more
-                              </p>
+                              <p style={{ color: '#007AFF' }} onClick={() => handleClick(id)}>View more</p>
                             </div>
                           </td>
                         </tr>

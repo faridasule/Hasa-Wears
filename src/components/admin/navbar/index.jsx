@@ -56,7 +56,7 @@ const NavBar = ({ mode }) => {
           {mode !== 'Full' && (
             <li onClick={openAddProductDialog} style={{ paddingTop: '3rem' }}>
               <div>
-                <FaPlus title="create product" color="#007AFF" size={20} />
+                <FaPlus cursor={'pointer'} title="create product" color="#007AFF" size={20} />
               </div>
             </li>
           )}
@@ -111,7 +111,10 @@ const NavBar = ({ mode }) => {
         <DialogTitle>
           <IconButton
             aria-label="close"
-            onClick={handleClose}
+            onClick={(event) => {
+              event.stopPropagation(); // Prevents click event from closing the dialog
+              handleClose();
+            }}
             sx={{
               position: 'absolute',
               right: 20,
@@ -123,7 +126,9 @@ const NavBar = ({ mode }) => {
             <CloseIcon size={50} />
           </IconButton>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent
+          onClick={(event) => event.stopPropagation()} // Prevents clicks inside content from closing the dialog
+        >
           <AddProduct dialogMode={dialogMode} onClose={handleClose} />
         </DialogContent>
       </Dialog>

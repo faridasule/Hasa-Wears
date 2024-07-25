@@ -124,3 +124,12 @@
     }
   }
 }
+
+@media screen and (max-width: 380px) {
+
+  .button{
+    button{
+      width: 250px !important;
+    }
+  }
+}

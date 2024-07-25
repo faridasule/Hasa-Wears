@@ -210,9 +210,9 @@ const ViewProducts = () => {
                               <p><b>Name:</b> {name}</p>
                               <p><b>Category:</b> {category}</p>
                               <p><b>Price:</b> {formatNaira(price)}</p>
-                              <FaEdit size={18} color="#007AFF" onClick={() => openEditProductDialog(id)} />
+                              <FaEdit size={20} color="#007AFF" onClick={() => openEditProductDialog(id)} />
                               &nbsp;
-                              <RiDeleteBin2Fill color="#FF3B30" size={18} onClick={() => confirmDelete(id, imageURL)} />
+                              <RiDeleteBin2Fill style={{marginLeft: '10px'}} color="#FF3B30" size={20} onClick={() => confirmDelete(id, imageURL)} />
                             </div>
                           </td>
                         </tr>
