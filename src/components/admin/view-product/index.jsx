@@ -97,8 +97,8 @@ const ViewProducts = () => {
       {
         width: '420px',
         borderRadius: '3px',
-        titleColor: '#FF3B30',
-        okButtonBackground: '#FF3B30',
+        titleColor: '#d32e2d',
+        okButtonBackground: '#d32e2d',
         cssAnimationStyle: 'zoom',
       },
     );

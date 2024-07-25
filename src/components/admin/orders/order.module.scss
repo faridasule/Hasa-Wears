@@ -83,8 +83,10 @@
 
   @media (max-width: 600px) {
     .table {
+          overflow-x: scroll !important;
+
       min-height: 150svh;
-      padding-bottom: 100px;
+      padding-bottom: 200px;
     }
 
     td:nth-child(6) {

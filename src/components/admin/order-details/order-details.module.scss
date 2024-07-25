@@ -1,7 +1,7 @@
 .table {
   padding: 10px 20px;
   width: 100%;
-  overflow-x: auto;
+  overflow-x: auto !important;
 
   .bread-crumb {
     margin: 15px 0;
@@ -98,7 +98,7 @@
   @media (max-width: 500px) {
     .table {
       min-height: 200svh;
-      padding-bottom: 50px;
+      padding-bottom: 150px !important;
     }
 
     td:nth-child(6) button {
