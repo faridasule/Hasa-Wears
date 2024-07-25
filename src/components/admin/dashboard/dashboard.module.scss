@@ -47,7 +47,6 @@
   width: 65%;
 
   .card {
-    padding: 1rem;
     border: none !important;
     box-shadow: none !important;
 
@@ -65,7 +64,7 @@
   }
   .chart-wrapper{
     width: 100%;
-    min-height: 100vh;
-    margin: 2rem 0;
+    // min-height: 100vh;
+    margin: 1rem 0;
   }
 }
