@@ -224,7 +224,7 @@ const ViewProducts = () => {
             </table>
           )}
 
-          {products.length > 0 && (
+          {products.length > 5 && (
             <div className={styles.pagination}>
               <Pagination
                 page={currentPage}
