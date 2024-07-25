@@ -160,7 +160,7 @@ const Cart = () => {
                           <td className={styles.hideOnMobile}>
                             {formatNaira(price)}
                           </td>
-                                                                              <td>{capitalizeWords(sizes?.join(', '))}</td>
+<td>{sizes && sizes.length > 0 ? capitalizeWords(sizes.join(', ')) : 'Nil'}</td>
 
                           <td className={styles.hideOnMobile}>
                             <div className={styles.count}>
