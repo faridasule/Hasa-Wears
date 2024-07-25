@@ -49,8 +49,7 @@ const Chart = () => {
   const orders = useSelector(selectOrderHistory);
   const totalOrderAmount = useSelector(selectTotalOrderAmount);
 
-  console.log("Orders:", orders);
-  console.log(totalOrderAmount, 'amount');
+  
 
   // Initialize a map with all months set to 0
   const months = [
