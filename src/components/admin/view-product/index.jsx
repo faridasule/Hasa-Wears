@@ -46,7 +46,6 @@ const ViewProducts = () => {
     { title: 'Manage Products' },
   ];
   const dispatch = useDispatch();
-
   dispatch(setBreadCrumb(breadcrumb));
 
   const { data, isLoading } = useFetchCollection('products');
@@ -60,11 +59,7 @@ const ViewProducts = () => {
   // Get Current Products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct,
-  );
-
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   const prevPage = () => {
@@ -84,11 +79,7 @@ const ViewProducts = () => {
   };
 
   useEffect(() => {
-    dispatch(
-      STORE_PRODUCTS({
-        products: data,
-      }),
-    );
+    dispatch(STORE_PRODUCTS({ products: data }));
   }, [dispatch, data]);
 
   useEffect(() => {
@@ -97,16 +88,12 @@ const ViewProducts = () => {
 
   const confirmDelete = (id, imageURL) => {
     Notiflix.Confirm.show(
-      'Delete Product!!!',
+      'Delete Product',
       'You are about to delete this product',
       'Delete',
       'Cancel',
-      function okCb() {
-        deleteProduct(id, imageURL);
-      },
-      function cancelCb() {
-        console.log('Delete Canceled');
-      },
+      () => deleteProduct(id, imageURL),
+      () => console.log('Delete Canceled'),
       {
         width: '420px',
         borderRadius: '3px',
@@ -129,9 +116,7 @@ const ViewProducts = () => {
     }
   };
 
-  const [showPreview, setShowPreview] = useState(
-    Array(products.length).fill(false),
-  );
+  const [showPreview, setShowPreview] = useState(Array(filteredProducts.length).fill(false));
 
   const handlePreview = (e, index) => {
     e.stopPropagation();
@@ -141,16 +126,14 @@ const ViewProducts = () => {
 
     // Close all previews when screen size is larger than 600px
     if (window.innerWidth > 600) {
-      setShowPreview(Array(products.length).fill(false));
+      setShowPreview(Array(filteredProducts.length).fill(false));
     }
   };
 
   const handleClose = () => {
     setIsDialogOpen(false);
-    setEditProductId(null); 
+    setEditProductId(null);
   };
-
-
 
   const openEditProductDialog = (id) => {
     setDialogMode('EDIT');
@@ -172,10 +155,7 @@ const ViewProducts = () => {
             <p>
               <b>{filteredProducts.length}</b> products found
             </p>
-            <Search
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <Search value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
 
           {products.length === 0 ? (
@@ -184,8 +164,8 @@ const ViewProducts = () => {
             <table>
               <thead>
                 <tr>
-                  <th className={styles.hideOnMobile}>s/n</th>
-                  <th>Image</th>
+                  <th className={styles.hideOnMobile}>S/N</th>
+                  <th>Product</th>
                   <th className={styles.hideOnMobile}>Name</th>
                   <th className={styles.hideOnMobile}>Category</th>
                   <th className={styles.hideOnMobile}>Price</th>
@@ -202,78 +182,37 @@ const ViewProducts = () => {
                         <td className={styles.hideOnMobile}>{index + 1}</td>
                         <td>
                           <div className={styles.img}>
-                            <img
-                              src={imageURL}
-                              alt={name}
-                              style={{ width: '100px' }}
-                            />
+                            <img src={imageURL} alt={name} style={{ width: '100px' }} />
                           </div>
                         </td>
                         <td className={styles.hideOnMobile}>{name}</td>
                         <td className={styles.hideOnMobile}>{category}</td>
                         <td className={styles.hideOnMobile}>{formatNaira(price)}</td>
-                        <td
-                          className={`${styles.icons} ${styles.hideOnMobile}`}
-                        >
-                          <FaEdit
-                            size={20}
-                            color="#007AFF"
-                            onClick={() => openEditProductDialog(id)}
-                          />
-                          <RiDeleteBin2Fill
-                            size={20}
-                            color="#FF3B30"
-                            onClick={() => confirmDelete(id, imageURL)}
-                          />
+                        <td className={`${styles.icons} ${styles.hideOnMobile}`}>
+                          <FaEdit size={20} color="#007AFF" onClick={() => openEditProductDialog(id)} />
+                          <RiDeleteBin2Fill size={20} color="#FF3B30" onClick={() => confirmDelete(id, imageURL)} />
                         </td>
-                        <td
-                          className={`${styles.icons} ${styles.showOnMobile}`}
-                        >
-                            <button
-                              onClick={(e) => handlePreview(e, index)}
-                              title="preview-button"
-                            >
-                              {!showPreview[index] ? (
-                                <ChevronRightIcon
-                                  color="#007AFF"
-                                  size={25}
-                                  title="right-arrow-icon"
-                                />
-                              ) : (
-                                <ChevronDownIcon
-                                  color="#007AFF"
-                                  size={25}
-                                  title="down-arrow-icon"
-                                />
-                              )}
-                            </button>
+                        <td className={`${styles.icon} ${styles.showOnMobile}`}>
+                          <button onClick={(e) => handlePreview(e, index)} title="preview-button">
+                            {!showPreview[index] ? (
+                              <ChevronRightIcon color="#007AFF" size={25} title="right-arrow-icon" />
+                            ) : (
+                              <ChevronDownIcon color="#007AFF" size={25} title="down-arrow-icon" />
+                            )}
+                          </button>
                         </td>
                       </tr>
 
-                        {showPreview[index] && (
+                      {showPreview[index] && (
                         <tr className={styles['additional-row']}>
                           <td colSpan="3">
                             <div className={styles['toggle-content']}>
-                              <p>
-                                <b>Name:</b> {name}
-                              </p>
-                              <p>
-                                <b>Category:</b> {category}
-                              </p>
-                              <p>
-                                <b>Price:</b> {formatNaira(price)}
-                              </p>
-                                 <FaEdit
-                            size={18}
-                            color="#007AFF"
-                            onClick={() => openEditProductDialog(id)}
-                          />
+                              <p><b>Name:</b> {name}</p>
+                              <p><b>Category:</b> {category}</p>
+                              <p><b>Price:</b> {formatNaira(price)}</p>
+                              <FaEdit size={18} color="#007AFF" onClick={() => openEditProductDialog(id)} />
                               &nbsp;
-                              <RiDeleteBin2Fill
-                                color="#FF3B30"
-                                size={18}
-                                onClick={() => confirmDelete(id, imageURL)}
-                              />
+                              <RiDeleteBin2Fill color="#FF3B30" size={18} onClick={() => confirmDelete(id, imageURL)} />
                             </div>
                           </td>
                         </tr>
@@ -292,12 +231,12 @@ const ViewProducts = () => {
                 totalPages={totalPages}
                 onPreviousPage={prevPage}
                 onNextPage={nextPage}
-                onPageChange={(page) => onPageChange(page)}
+                onPageChange={onPageChange}
               />
             </div>
           )}
 
-          <Dialog open={isDialogOpen} fullWidth maxWidth="md">
+          <Dialog open={isDialogOpen} onClose={handleClose} fullWidth maxWidth="md">
             <DialogTitle>
               <IconButton
                 aria-label="close"
@@ -310,11 +249,11 @@ const ViewProducts = () => {
                   fontSize: 'large',
                 }}
               >
-                <CloseIcon size={50} />
+                <CloseIcon />
               </IconButton>
             </DialogTitle>
             <DialogContent>
-              <AddProduct dialogMode="EDIT" id={editProductId} onClose={handleClose} mode={dialogMode} />
+              <AddProduct dialogMode={dialogMode} id={editProductId} onClose={handleClose} />
             </DialogContent>
           </Dialog>
         </div>
@@ -324,5 +263,3 @@ const ViewProducts = () => {
 };
 
 export default ViewProducts;
-
-
