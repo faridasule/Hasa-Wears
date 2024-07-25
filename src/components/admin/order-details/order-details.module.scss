@@ -97,7 +97,7 @@
 
   @media (max-width: 500px) {
     .table {
-      min-height: 200svh;
+      min-height: 200svh !important;
       padding-bottom: 150px !important;
     }
 
