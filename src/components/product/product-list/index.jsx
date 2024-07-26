@@ -10,7 +10,7 @@ import {
   selectFilteredProducts,
   SORT_PRODUCTS,
 } from "../../../redux/features/filterSlice";
-import { Pagination } from "evergreen-ui";
+import { Pagination, Select} from "evergreen-ui";
 
 const ProductList = ({ products }) => {
   const [grid, setGrid] = useState(true);
@@ -72,14 +72,23 @@ const ProductList = ({ products }) => {
         {/* Sort Products */}
         <div className={styles['sort-wrap']}>
           <div className={styles.sort}>
-            <label>Sort by:</label>
-            <select value={sort} onChange={(e) => setSort(e.target.value)}>
-              <option value="latest">Featured</option>
+            {/* <label>Sort by:</label> */}
+             <Select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              border="1px solid #d8dae5"
+              appearance="default"
+              backgroundColor="#fff"
+              width="100%"
+              height={40}
+              borderRadius="5px"
+            >
+              <option value="latest"> Sort by: Featured</option>
               <option value="lowest-price">Lowest Price</option>
               <option value="highest-price">Highest Price</option>
               <option value="a-z">A - Z</option>
               <option value="z-a">Z - A</option>
-            </select>
+            </Select>
           </div>
           <div className={styles.icons}>
             <BsFillGridFill

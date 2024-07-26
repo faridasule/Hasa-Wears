@@ -18,7 +18,7 @@ import { db, storage } from '../../../firebase/config';
 import styles from './add-product.module.scss';
 import { CiShoppingCart } from 'react-icons/ci';
 import { selectProducts } from '../../../redux/features/productSlice';
-import { FileUploader, FileCard } from 'evergreen-ui';
+import { FileUploader, FileCard, Select } from 'evergreen-ui';
 import LoadingIcons from 'react-loading-icons';
 import { toast } from 'react-toastify';
 
@@ -92,7 +92,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
       const file = files[0];
       setFiles([file]);
 
-      const storageRef = ref(storage, `reedShop/${Date.now()}${file.name}`);
+      const storageRef = ref(storage, `hasaWears/${Date.now()}${file.name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
@@ -227,11 +227,20 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
           {errors.price && <div className={styles.error}>{errors.price}</div>}
 
           <label>Product Category:</label>
-          <select
+          <Select
             required
             name="category"
             value={product.category}
-            onChange={handleInputChange}
+            onChange={(e) => setProduct({ ...product, category: e.target.value })}
+            border="1px solid #d8dae5"
+            appearance="default"
+            backgroundColor="#fff"
+            width="100%"
+            height={45}
+            borderRadius="5px"
+            className={styles.select}
+            marginBottom={'2rem'}
+            marginTop={"1rem"}
           >
             <option value="" disabled>
               -- choose product category --
@@ -241,7 +250,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
                 {cat.name}
               </option>
             ))}
-          </select>
+          </Select>
           {errors.category && <div className={styles.error}>{errors.category}</div>}
 
           <label>Product Company/Brand:</label>

@@ -127,7 +127,7 @@ const ProductDetails = () => {
                       ({`Total ${filteredReviews.length} Received`})
                     </span>
                   </div>
-                  <p>{product.desc}</p>
+                  <p className={styles.desc}>{product.desc}</p>
                   <p>
                     <b>Category:</b> {product.category}
                     </p>

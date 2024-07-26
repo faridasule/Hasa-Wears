@@ -38,7 +38,7 @@ const FlutterPay = ({ onPay }) => {
 
   const fwConfig = {
     ...config,
-    text: "Checkout",
+    text: "Payment",
     callback: (response) => {
       console.log(response);
       closePaymentModal();

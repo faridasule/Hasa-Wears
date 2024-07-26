@@ -17,7 +17,7 @@ const Chart = () => {
   const getOrderCount = (arr, value) => arr.filter((n) => n === value).length
 
   const [q1, q2, q3, q4] = [
-    'Order Placed...',
+    'Order Placed',
     'Processing...',
     'Shipped...',
     'Delivered',

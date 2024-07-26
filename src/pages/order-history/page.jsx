@@ -139,7 +139,7 @@ const OrderHistory = () => {
               </>
             )}
           </div>
-          {filteredOrders.length > 10 && (
+          {filteredOrders.length > 6 && (
             <div className={styles.pagination}>
               <Pagination
                 page={currentPage}
