@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -45,11 +45,17 @@ export const options = {
   },
 };
 
+const getGradient = (ctx, chartArea) => {
+  const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+  gradient.addColorStop(0, '#4D79FF');
+  gradient.addColorStop(1, '#D6E0FF');
+  return gradient;
+};
+
 const Chart = () => {
   const orders = useSelector(selectOrderHistory);
   const totalOrderAmount = useSelector(selectTotalOrderAmount);
-
-  
+  const chartRef = useRef(null);
 
   // Initialize a map with all months set to 0
   const months = [
@@ -89,17 +95,38 @@ const Chart = () => {
       {
         label: "Revenue < 20,000",
         data: dataLessThan20k,
-        backgroundColor: "#003F7F",
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) {
+            return null;
+          }
+          return getGradient(ctx, chartArea);
+        },
       },
       {
         label: "20,000 <= Revenue <= 40,000",
         data: dataLessThan40k,
-        backgroundColor: "#D6E0FF",
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) {
+            return null;
+          }
+          return getGradient(ctx, chartArea);
+        },
       },
       {
         label: "Revenue > 40,000",
         data: dataAbove40k,
-        backgroundColor: "#4D79FF",
+        backgroundColor: (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) {
+            return null;
+          }
+          return getGradient(ctx, chartArea);
+        },
       },
     ],
   };
@@ -108,7 +135,7 @@ const Chart = () => {
     <div className={styles.charts}>
       <Card cardClass={styles.card}>
         <h4>Total Revenue by Month</h4>
-        <Bar options={options} data={chartData} />
+        <Bar ref={chartRef} options={options} data={chartData} />
       </Card>
     </div>
   );

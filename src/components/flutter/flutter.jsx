@@ -22,7 +22,7 @@ const FlutterPay = ({ onPay }) => {
     public_key: "FLWPUBK_TEST-d8ab65dc58a2ac1d980e96719cc1a0e7-X",
     tx_ref: Date.now().toString(),
     amount: cart,
-    currency: "USD",
+    currency: "Naira",
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: email ?? "", 
