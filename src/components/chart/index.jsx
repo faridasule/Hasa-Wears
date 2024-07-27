@@ -2,17 +2,17 @@ import React, { useEffect, useRef } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
+  LinearScale,
   BarElement,
   Title,
   Tooltip,
   Legend,
-  LinearScale
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import Card from "../card/index";
+import Card from "../card";
 import styles from "./chart.module.scss";
-import { selectOrderHistory, selectTotalOrderAmount } from "../../redux/features/orderSlice";
 import { useSelector } from "react-redux";
+import { selectOrderHistory } from "../../redux/features/orderSlice";
 
 ChartJS.register(
   CategoryScale,
@@ -54,7 +54,6 @@ const getGradient = (ctx, chartArea) => {
 
 const Chart = () => {
   const orders = useSelector(selectOrderHistory);
-  const totalOrderAmount = useSelector(selectTotalOrderAmount);
   const chartRef = useRef(null);
 
   // Initialize a map with all months set to 0
@@ -93,32 +92,8 @@ const Chart = () => {
     labels,
     datasets: [
       {
-        label: "Revenue < 20,000",
-        data: dataLessThan20k,
-        backgroundColor: (context) => {
-          const chart = context.chart;
-          const { ctx, chartArea } = chart;
-          if (!chartArea) {
-            return null;
-          }
-          return getGradient(ctx, chartArea);
-        },
-      },
-      {
-        label: "20,000 <= Revenue <= 40,000",
-        data: dataLessThan40k,
-        backgroundColor: (context) => {
-          const chart = context.chart;
-          const { ctx, chartArea } = chart;
-          if (!chartArea) {
-            return null;
-          }
-          return getGradient(ctx, chartArea);
-        },
-      },
-      {
-        label: "Revenue > 40,000",
-        data: dataAbove40k,
+        label: "Revenue",
+        data: dataLessThan20k.map((value, index) => value + dataLessThan40k[index] + dataAbove40k[index]),
         backgroundColor: (context) => {
           const chart = context.chart;
           const { ctx, chartArea } = chart;
