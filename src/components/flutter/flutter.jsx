@@ -40,7 +40,6 @@ const FlutterPay = ({ onPay }) => {
     ...config,
     text: "Payment",
     callback: (response) => {
-      console.log(response);
       closePaymentModal();
           onPay();
 

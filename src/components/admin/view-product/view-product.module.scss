@@ -82,9 +82,8 @@
 
 @media (max-width: 600px) {
   .table {
-    overflow-x: scroll !important; // Allow horizontal scroll if necessary
-      padding: 10px 20px 150px 20px;
-
+    overflow-x: scroll !important;
+    padding: 10px 20px 150px 20px;
   }
 
   .additional-row {

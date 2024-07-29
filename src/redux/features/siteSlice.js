@@ -1,14 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
 
-// type BreadCrumb = {
-//     title: string,
-//     url?: string
-// }
-
-// export interface SiteSettingState {
-//     breadCrumb: BreadCrumb[]
-// }
-
 const initialState = {
     breadCrumb: []
 }

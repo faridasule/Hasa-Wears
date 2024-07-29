@@ -6,10 +6,10 @@
   .card {
     width: 100%;
     max-width: 500px;
-    // padding: 1rem;
     border: none !important;
     box-shadow: none !important;
     border-radius: none !important;
+
     h3 {
       font-weight: 300;
     }
@@ -18,19 +18,18 @@
   form {
     width: 100%;
     display: flex;
-    // margin-top: 30px;
-    // flex-direction: column;
 
-    div{
+    div {
       width: 100%;
     }
 
     .wrapper {
       width: 100%;
       margin-top: 30px;
-      h3{
-font-weight: 600;
-font-size: 18px;
+
+      h3 {
+        font-weight: 600;
+        font-size: 18px;
       }
     }
 
@@ -40,6 +39,7 @@ font-size: 18px;
       font-weight: 500;
       margin-top: 1.5rem;
     }
+
     input[type="text"],
     .select,
     .card-details {
@@ -53,62 +53,50 @@ font-size: 18px;
       border-radius: 4px;
       outline: none;
     }
+  }
+}
 
-    .select{
+.city-country{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+@media (max-width: 1230px) {
+  .checkout {
+    padding: 20px 30px !important;
+
+    .card {
+      max-width: 400px;
     }
   }
 }
 
-@media(max-width: 1230px) {
+@media (max-width: 1024px) {
   .checkout {
-      padding: 20px 30px !important;
-   .card {
-    width: 100%;
+    padding: 20px 40px !important;
+
+    .card {
+      max-width: 300px;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .checkout {
+    padding: 20px 10px;
     max-width: 400px;
-    // padding: 1rem;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: none !important;
-    h3 {
-      font-weight: 300;
-    }
-  }
-  }
-
-  
-}
-
-@media(max-width: 1024px) {
-  .checkout {
-      padding: 20px 40px !important;
-   .card {
-    width: 100%;
-    max-width: 300px;
-    // padding: 1rem;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: none !important;
-    h3 {
-      font-weight: 300;
-    }
-  }
-  }
-
-  
-}
-
-@media(max-width: 760px) {
-  .checkout {
-      padding: 20px 30px;
 
     form {
       flex-direction: column;
-      div {
-        width: 100%;
-      }
-      .summary-card{
+
+      .summary-card {
         margin-top: 50px;
       }
     }
+  }
+
+  .city-country{
+    flex-direction: column;
   }
 }

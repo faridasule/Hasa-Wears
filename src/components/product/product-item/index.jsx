@@ -7,7 +7,6 @@ import {
 } from '../../../redux/features/cartSlice';
 import {
   ADD_TO_WISHLIST,
-  selectWishlistItems,
 } from "../../../redux/features/wishlistSlice";
 import Card from '../../card/index';
 import styles from './product-item.module.scss';
@@ -15,7 +14,8 @@ import { IoCartOutline, IoHeartOutline } from 'react-icons/io5';
 import useFetchCollection from '../../../custopm-hook/useFetchCollection';
 import { Loader } from '@mantine/core';
 import { FiEye } from 'react-icons/fi';
-import StarRating from '../../star/index'; // Import the custom star rating component
+import StarRating from '../../star/index'; 
+import { formatNaira } from '../../../@core/utils';
 
 const ProductItem = ({ grid, id, name, price, imageURL }) => {
   const dispatch = useDispatch();
@@ -53,15 +53,7 @@ const ProductItem = ({ grid, id, name, price, imageURL }) => {
     dispatch(ADD_TO_WISHLIST(product));
   };
 
-  const formatPrice = (price) => {
-    return price
-      .toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 0,
-      })
-      .replace('NGN', '₦'); // Remove the currency code and add the naira symbol
-  };
+
 
   return (
     <Card cardClass={grid ? `${styles.grid}` : `${styles.list}`}>
@@ -92,7 +84,7 @@ const ProductItem = ({ grid, id, name, price, imageURL }) => {
         <div className={styles.details}>
           <h3>{shortenText(name, 18)}</h3>
           <div className={styles.box}>
-            <p>{formatPrice(price)}</p>
+            <p>{formatNaira(price)}</p>
             <Link to={`/product-details/${id}`}>
               <div className={styles.cart}>
                 <FiEye title='view-details' color="#007AFF" size={18} />

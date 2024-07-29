@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
+  margin: 0 auto;
 }
 
 .reviewCard {
@@ -24,6 +25,7 @@
   padding: 10px;
   border-radius: 8px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .reviewImage {
@@ -36,6 +38,7 @@
 .reviewContent {
   display: flex;
   flex-direction: column;
+  width: 250px;
 }
 
 .reviewContent p {
@@ -90,3 +93,9 @@
 }
 
 
+
+@media (max-width: 300px) {
+ .reviewContent{
+  width: 200 ;
+ }
+}

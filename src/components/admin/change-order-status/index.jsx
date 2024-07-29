@@ -4,54 +4,67 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db } from "../../../firebase/config";
 import Card from "../../card/index";
-import Loader from "../../loader/index";
+import Loader from "../../content-loader";
+import { Select } from "evergreen-ui";
 import styles from "./change-order-status.module.scss";
 
 const ChangeOrderStatus = ({ order, id }) => {
+
+  // State variables
   const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
-  const editOrder = (e, id) => {
+  // Function to edit order status
+  const editOrder = async (e, id) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading(true); 
 
+    // Configuration for the updated order
     const orderConfig = {
       userID: order.userID,
       userEmail: order.userEmail,
       orderDate: order.orderDate,
       orderTime: order.orderTime,
       orderAmount: order.orderAmount,
-      orderStatus: status,
+      orderStatus: status, // Updated order status
       cartItems: order.cartItems,
       shippingAddress: order.shipping,
       createdAt: order.createdAt,
       editedAt: Timestamp.now().toDate(),
     };
-    try {
-      setDoc(doc(db, "orders", id), orderConfig);
 
-      setIsLoading(false);
-      toast.success("Order status changes successfully");
+    // Update the order in Firestore
+    try {
+      await setDoc(doc(db, "orders", id), orderConfig);
+
+      setIsLoading(false); 
+      toast.success("Order status changed successfully"); 
       navigate("/admin/orders");
     } catch (error) {
-      setIsLoading(false);
+      setIsLoading(false); 
       toast.error(error.message);
     }
   };
 
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading && <Loader />} {/* Show loader if loading state is true */}
 
       <div className={styles.status}>
         <Card cardClass={styles.card}>
           <h4>Update Status</h4>
           <form onSubmit={(e) => editOrder(e, id)}>
             <span>
-              <select
+              {/* Select dropdown for order status */}
+              <Select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
+                width='100%'
+                height={45}
+                appearance="default"
+                marginBottom={'2rem'}
+                marginTop={"1rem"}
               >
                 <option value="" disabled>
                   -- Choose one --
@@ -60,7 +73,7 @@ const ChangeOrderStatus = ({ order, id }) => {
                 <option value="Processing...">Processing...</option>
                 <option value="Shipped...">Shipped...</option>
                 <option value="Delivered">Delivered</option>
-              </select>
+              </Select>
             </span>
             <span className={styles.button}>
               <button type="submit" className="--btn --btn-primary">

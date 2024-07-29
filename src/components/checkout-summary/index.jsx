@@ -9,16 +9,13 @@ import {
 import Card from "../card/index";
 import styles from "./checkout-summary.module.scss";
 import { Pane } from "evergreen-ui";
+import { formatNaira } from "../../@core/utils";
 
 const CheckoutSummary = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotalAmount = useSelector(selectCartTotalAmount);
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
-  const formatNaira = (amount) => {
-    return '₦' + amount.toLocaleString()
 
-
-  }
   
   return (
     <div>

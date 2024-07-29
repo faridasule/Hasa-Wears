@@ -12,12 +12,15 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import AddProduct from '../../admin/add-product/index';
 
+//Style for active links
 const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : '');
 
 const NavBar = ({ mode }) => {
+  //States
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogMode, setDialogMode] = useState('ADD');
 
+  //OpenAddProductDialog
   const openAddProductDialog = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -25,6 +28,7 @@ const NavBar = ({ mode }) => {
     setIsDialogOpen(true);
   };
 
+  //CloseProductDialog
   const handleClose = () => {
     setIsDialogOpen(false);
   };

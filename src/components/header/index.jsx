@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./header.module.scss";
 import { FaTimes, FaHeart } from "react-icons/fa";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { auth } from "../../firebase/config";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { toast } from "react-toastify";
@@ -13,20 +12,18 @@ import {
   selectIsLoggedIn,
 } from "../../redux/features/authSlice";
 import { AdminOnlyLink } from "../admin-route/index";
-import { Avatar, Dialog, Pane, Badge } from "evergreen-ui"; // Import Evergreen UI components
+import {Dialog, Pane, Badge } from "evergreen-ui"; 
 import {
   CALCULATE_TOTAL_QUANTITY,
   selectCartTotalQuantity,
 } from "../../redux/features/cartSlice";
 import {
-  selectWishlistItems,
   selectWishlistTotalQuantity
 } from "../../redux/features/wishlistSlice";
 import { HiShoppingCart } from "react-icons/hi2";
 import Wishlist from "../wishlist";
 import AvatarPopover from "../avartar-popovers/index";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Diversity1 } from "@mui/icons-material";
 
 
 const logo = (
@@ -46,11 +43,8 @@ const Header = () => {
   const [displayName, setDisplayName] = useState("");
   const [scrollPage, setScrollPage] = useState(false);
   const [showWishlistDialog, setShowWishlistDialog] = useState(false); // State for wishlist dialog
-
   const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const wishTotalQuantity = useSelector(selectWishlistTotalQuantity);
-  const wishlistItems = useSelector(selectWishlistItems); // Assuming you have selector for wishlist items
-
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
@@ -101,16 +95,6 @@ const Header = () => {
     });
   }, [dispatch, displayName]);
 
-  const logoutUser = () => {
-    signOut(auth)
-      .then(() => {
-        toast.success("Logout successfully.");
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
 
   // Cart Icons
   const cart = (

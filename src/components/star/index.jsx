@@ -1,21 +1,20 @@
 import React from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
-import { IoIosStarOutline, IoMdStarHalf,  IoMdStar} from "react-icons/io";
+import { IoMdStarOutline, IoMdStarHalf, IoMdStar } from 'react-icons/io';
 
 const StarRating = ({ count, value, size, color }) => {
   const stars = [];
 
   for (let i = 1; i <= count; i++) {
     if (value >= i) {
-      stars.push(< IoMdStar style={{marginRight: '4px'}} key={i} size={size} color={color} />);
+      stars.push(<IoMdStar key={i} size={size} color={color} style={{ marginRight: '2px' }} />);
     } else if (value >= i - 0.5) {
-      stars.push(<IoMdStarHalf style={{marginRight: '5px'}} key={i} size={size} color={color} />);
+      stars.push(<IoMdStarHalf key={i} size={size} color={color} style={{ marginRight: '2px' }} />);
     } else {
-      stars.push(<IoIosStarOutline style={{marginRight: '5px'}} key={i} size={size} color={color} />);
+      stars.push(<IoMdStarOutline key={i} size={size} color={color} style={{ marginRight: '2px' }} />);
     }
   }
 
-  return <div>{stars}</div>;
+  return <div style={{ display: 'flex' }}>{stars}</div>;
 };
 
 export default StarRating;

@@ -27,7 +27,7 @@ const AboutPage = () => {
               <div>
                 <HotSales/>
               </div>
-               <div>
+               <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                 <TopReviews/>
               </div>
       </div>

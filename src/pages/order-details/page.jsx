@@ -21,12 +21,14 @@ const OrderDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
+   // Breadcrumbs navigation for the page
   const breadcrumb = [
     { title: 'Home', url: '/' },
     { title: 'Order History', url: '/order-history' },
     { title: 'Order Details' },
   ];
 
+  // Set breadcrumb navigation in the Redux store
   useEffect(() => {
     dispatch(setBreadCrumb(breadcrumb));
   }, [dispatch]);
@@ -42,11 +44,13 @@ const OrderDetails = () => {
     }));
   };
 
+  //Open Dialog
   const openDialog = (productId) => {
     setReviewProductId(productId);
     setIsDialogOpen(true);
   };
 
+ //Close Dialog
   const closeDialog = () => {
     setIsDialogOpen(false);
     setReviewProductId(null);
@@ -173,7 +177,7 @@ const OrderDetails = () => {
               </tbody>
             </table>
               {order.cartItems.length > 5 && (
-                            <div className={styles.pagination}>
+              <div className={styles.pagination}>
 
               <Pagination
                 page={currentPage}

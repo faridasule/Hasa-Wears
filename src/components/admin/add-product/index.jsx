@@ -40,6 +40,7 @@ const sizes = [
   { id: 'xl', name: 'XL' },
 ];
 
+// Initial state for the product
 const initialState = {
   name: '',
   imageURL: '',
@@ -61,6 +62,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
+  // UseEffect to set product data for editing
   useEffect(() => {
     if (dialogMode === 'EDIT' && id && productEdit) {
       setProduct(productEdit);
@@ -71,12 +73,14 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
     }
   }, [dialogMode, id, productEdit]);
 
+  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
     setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
+  // Handle size changes
   const handleSizeChange = (e) => {
     const { value, checked } = e.target;
     setProduct((prevProduct) => ({
@@ -87,6 +91,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
     }));
   };
 
+  // Handle file upload
   const handleChange = useCallback((files) => {
     if (files.length > 0) {
       const file = files[0];
@@ -115,15 +120,18 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
     }
   }, [product]);
 
+  // Handle rejected files
   const handleRejected = useCallback((fileRejections) => {
     setFileRejections([fileRejections[0]]);
   }, []);
 
+  // Handle removing files
   const handleRemove = useCallback(() => {
     setFiles([]);
     setFileRejections([]);
   }, []);
 
+  // Validate form fields
   const validateForm = () => {
     const newErrors = {};
     if (!product.name) newErrors.name = 'Product name is required';
@@ -136,6 +144,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Add product to the database
   const addProduct = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -166,12 +175,14 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
     }
   };
 
+  // Edit product in the database
   const editProduct = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsLoading(true);
 
+    // Delete previous image if a new one is uploaded
     if (product?.imageURL !== productEdit?.imageURL) {
       const storageRef = ref(storage, productEdit?.imageURL);
       deleteObject(storageRef);
@@ -190,7 +201,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
         editedAt: Timestamp.now().toDate(),
       });
       setIsLoading(false);
-      toast.success('Product Edited Successfully');
+      toast.success('Product edited successfully.');
       navigate('/admin/all-products');
     } catch (error) {
       setIsLoading(false);
@@ -199,143 +210,141 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   };
 
   return (
-    <>
-      <div className={styles.product}>
-        <div className={styles['cart-icon']}>
-          <CiShoppingCart color="#007AFF" size={40} />
-        </div>
-        <h2>{dialogMode === 'ADD' ? 'Add New Product' : 'Edit Product'}</h2>
-        <form onSubmit={dialogMode === 'ADD' ? addProduct : editProduct}>
-          <label>Product name:</label>
-          <input
-            type="text"
-            required
-            name="name"
-            value={product.name}
-            onChange={handleInputChange}
-          />
-          {errors.name && <div className={styles.error}>{errors.name}</div>}
-
-          <label>Product price:</label>
-          <input
-            type="number"
-            required
-            name="price"
-            value={product.price}
-            onChange={handleInputChange}
-          />
-          {errors.price && <div className={styles.error}>{errors.price}</div>}
-
-          <label>Product Category:</label>
-          <Select
-            required
-            name="category"
-            value={product.category}
-            onChange={(e) => setProduct({ ...product, category: e.target.value })}
-            border="1px solid #d8dae5"
-            appearance="default"
-            backgroundColor="#fff"
-            width="100%"
-            height={45}
-            borderRadius="5px"
-            className={styles.select}
-            marginBottom={'2rem'}
-            marginTop={"1rem"}
-          >
-            <option value="" disabled>
-              -- choose product category --
-            </option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.name}>
-                {cat.name}
-              </option>
-            ))}
-          </Select>
-          {errors.category && <div className={styles.error}>{errors.category}</div>}
-
-          <label>Product Company/Brand:</label>
-          <input
-            type="text"
-            name="brand"
-            value={product.brand}
-            onChange={handleInputChange}
-          />
-
-          <label>Product Sizes:</label>
-          <div className={styles.sizes}>
-            {sizes.map((size) => (
-              <label key={size.id}>
-                <input
-                  type="checkbox"
-                  value={size.id}
-                  checked={product.sizes.includes(size.id)}
-                  onChange={handleSizeChange}
-                />
-                <span className={styles.checkboxLabel}>{size.name}</span>
-              </label>
-            ))}
-          </div>
-          {errors.sizes && <div className={styles.error}>{errors.sizes}</div>}
-
-          <label htmlFor="image">Product image:</label>
-          <div className={styles.uploaderCard}>
-            <FileUploader
-              description="You can upload 1 file. File can be up to 50 MB."
-              maxSizeInBytes={50 * 1024 ** 2}
-              maxFiles={1}
-              onChange={handleChange}
-              onRejected={handleRejected}
-              background="#fff"
-              renderFile={(file) => {
-                const { name, size, type } = file;
-                const fileRejection = fileRejections.find(
-                  (fileRejection) => fileRejection.file === file
-                );
-                const { message } = fileRejection || {};
-                return (
-                  <FileCard
-                    key={name}
-                    isInvalid={fileRejection != null}
-                    name={name}
-                    onRemove={handleRemove}
-                    sizeInBytes={size}
-                    type={type}
-                    validationMessage={message}
-                  />
-                );
-              }}
-              values={files}
-            />
-          </div>
-
-          <label>Product Description</label>
-          <textarea
-            name="desc"
-            required
-            value={product.desc}
-            onChange={handleInputChange}
-            cols="30"
-            rows="10"
-          ></textarea>
-          {errors.desc && <div className={styles.error}>{errors.desc}</div>}
-
-          <div className={styles['btn-wrap']}>
-            <button className="--btn --btn-primary" type="submit">
-              {isLoading ? (
-                <LoadingIcons.ThreeDots height="0.5rem" />
-              ) : dialogMode === 'ADD' ? (
-                'Save Product'
-              ) : (
-                'Edit Product'
-              )}
-            </button>
-            <button className="--btn" type="button" onClick={onClose}>
-              Cancel
-            </button>
-          </div>
-        </form>
+    <div className={styles.product}>
+      <div className={styles['cart-icon']}>
+        <CiShoppingCart color="#007AFF" size={40} />
       </div>
-    </>
+      <h2>{dialogMode === 'ADD' ? 'Add New Product' : 'Edit Product'}</h2>
+      <form onSubmit={dialogMode === 'ADD' ? addProduct : editProduct}>
+        <label>Product name:</label>
+        <input
+          type="text"
+          required
+          name="name"
+          value={product.name}
+          onChange={handleInputChange}
+        />
+        {errors.name && <div className={styles.error}>{errors.name}</div>}
+
+        <label>Product price:</label>
+        <input
+          type="number"
+          required
+          name="price"
+          value={product.price}
+          onChange={handleInputChange}
+        />
+        {errors.price && <div className={styles.error}>{errors.price}</div>}
+
+        <label>Product Category:</label>
+        <Select
+          required
+          name="category"
+          value={product.category}
+          onChange={(e) => setProduct({ ...product, category: e.target.value })}
+          border="1px solid #d8dae5"
+          appearance="default"
+          backgroundColor="#fff"
+          width="100%"
+          height={45}
+          borderRadius="5px"
+          className={styles.select}
+          marginBottom={'2rem'}
+          marginTop={"1rem"}
+        >
+          <option value="" disabled>
+            -- choose product category --
+          </option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.name}>
+              {cat.name}
+            </option>
+          ))}
+        </Select>
+        {errors.category && <div className={styles.error}>{errors.category}</div>}
+
+        <label>Product Company/Brand:</label>
+        <input
+          type="text"
+          name="brand"
+          value={product.brand}
+          onChange={handleInputChange}
+        />
+
+        <label>Product Sizes:</label>
+        <div className={styles.sizes}>
+          {sizes.map((size) => (
+            <label key={size.id}>
+              <input
+                type="checkbox"
+                value={size.id}
+                checked={product.sizes.includes(size.id)}
+                onChange={handleSizeChange}
+              />
+              <span className={styles.checkboxLabel}>{size.name}</span>
+            </label>
+          ))}
+        </div>
+        {errors.sizes && <div className={styles.error}>{errors.sizes}</div>}
+
+        <label htmlFor="image">Product image:</label>
+        <div className={styles.uploaderCard}>
+          <FileUploader
+            description="You can upload 1 file. File can be up to 50 MB."
+            maxSizeInBytes={50 * 1024 ** 2}
+            maxFiles={1}
+            onChange={handleChange}
+            onRejected={handleRejected}
+            background="#fff"
+            renderFile={(file) => {
+              const { name, size, type } = file;
+              const fileRejection = fileRejections.find(
+                (fileRejection) => fileRejection.file === file
+              );
+              const { message } = fileRejection || {};
+              return (
+                <FileCard
+                  key={name}
+                  isInvalid={fileRejection != null}
+                  name={name}
+                  onRemove={handleRemove}
+                  sizeInBytes={size}
+                  type={type}
+                  validationMessage={message}
+                />
+              );
+            }}
+            values={files}
+          />
+        </div>
+
+        <label>Product Description:</label>
+        <textarea
+          name="desc"
+          required
+          value={product.desc}
+          onChange={handleInputChange}
+          cols="30"
+          rows="10"
+        ></textarea>
+        {errors.desc && <div className={styles.error}>{errors.desc}</div>}
+
+        <div className={styles['btn-wrap']}>
+          <button className="--btn --btn-primary" type="submit">
+            {isLoading ? (
+              <LoadingIcons.ThreeDots height="0.5rem" />
+            ) : dialogMode === 'ADD' ? (
+              'Save Product'
+            ) : (
+              'Edit Product'
+            )}
+          </button>
+          <button className="--btn" type="button" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

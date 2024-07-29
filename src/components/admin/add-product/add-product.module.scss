@@ -3,34 +3,27 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  // margin-top: -3rem;
-  h2{
+
+  h2 {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.6%;
   }
+
   .card {
-    // width: 100%;
-    // max-width: 100%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   form {
     width: 70%;
 
-    select{
-      //  display: block;
+    select {
       font-size: 1.6rem;
       font-weight: 300;
-      // padding: 1rem;
-      // margin: 1rem auto;
       width: 100%;
-      // border: 1px solid #ddd;
-      // border-radius: 6px;
-      // outline: none;
-      // margin-bottom: 18px; 
     }
 
     label {
@@ -41,6 +34,7 @@
       line-height: 24px;
       letter-spacing: -0.6%;
     }
+
     input[type="text"],
     input[type="number"],
     input[type="file"],
@@ -59,14 +53,11 @@
       margin-bottom: 18px;
     }
 
-    // textarea {
-    //   width: 100%;
-    // }
-
     .progress {
       background-color: #aaa;
       border: 1px solid transparent;
       border-radius: 10px;
+
       .progress-bar {
         background-color: var(--light-blue);
         border: 1px solid transparent;
@@ -86,72 +77,68 @@
   margin-bottom: 18px;
 }
 
-  .cart-icon {
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        background-color: #f5f5f5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .btn-wrap{
-        display: flex;
-        gap: 1rem;
-        align-items: flex-end;
-        justify-content: flex-end;
-        margin-top: 2rem;
-             button:nth-child(1){
-                  width: 150px;
-                  height: 35px;
-                  font-size: 14px;
-                  font-weight: 500;
-                }
-
-                button:nth-child(2){
-                  background-color:  #f5f5f5;
-                  color: #000;
-                  font-weight: 500;
-                  width: 150px;
-                  height: 35px;
-                                    font-size: 14px;
-
-
-                }
-
-      }
-
-      .uploaderCard{
-        margin-bottom: 18px;
-      }
-
-
-      .sizes {
-  display: flex;
-  flex-direction: column;
-        margin-bottom: 18px;
-
-}
-
-.sizes label {
+.cart-icon {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  padding: 4px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 8px;
-  transition: border-color 0.3s;
+  justify-content: center;
 }
 
-.sizes input[type="checkbox"] {
-  margin-right: 8px;
+.btn-wrap {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 2rem;
+
+  button:nth-child(1) {
+    width: 150px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  button:nth-child(2) {
+    background-color: #f5f5f5;
+    color: #000;
+    font-weight: 500;
+    width: 150px;
+    height: 35px;
+    font-size: 14px;
+  }
 }
 
-.sizes label:hover {
-  border-color: #d4e9fa;; 
+.uploaderCard {
+  margin-bottom: 18px;
 }
+
+.sizes {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      border-color: #d4e9fa;
+    }
+  }
+}
+
 .error {
   color: #ff201f;
   font-size: 12px;
@@ -160,10 +147,9 @@
 }
 
 @media screen and (max-width: 700px) {
-  .product{
-  form{
-width: 90%;
+  .product {
+    form {
+      width: 90%;
+    }
   }
-  }
-
 }

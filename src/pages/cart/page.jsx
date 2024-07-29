@@ -24,38 +24,46 @@ import { ChevronDownIcon, ChevronRightIcon } from 'evergreen-ui'
 import { capitalizeWords } from '../../@core/utils'
 
 const Cart = () => {
+  // Selectors to get cart items, total amount, and total quantity from the Redux store
   const cartItems = useSelector(selectCartItems)
   const cartTotalAmount = useSelector(selectCartTotalAmount)
   const cartTotalQuantity = useSelector(selectCartTotalQuantity)
   const dispatch = useDispatch()
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
+  // Breadcrumbs navigation for the page
   const breadcrumb = [
     { title: 'Home', url: '/' },
     { title: 'Product', url: '/#product' },
     { title: 'Cart' },
   ]
 
+  // Set breadcrumb navigation in the Redux store
   dispatch(setBreadCrumb(breadcrumb))
 
   const navigate = useNavigate()
 
+  // Function to increase the quantity of a cart item
   const increaseCart = (cart) => {
     dispatch(ADD_TO_CART(cart))
   }
 
+  // Function to decrease the quantity of a cart item
   const decreaseCart = (cart) => {
     dispatch(DECREASE_CART(cart))
   }
 
+  // Function to remove an item from the cart
   const removeFromCart = (cart) => {
     dispatch(REMOVE_FROM_CART(cart))
   }
 
+  // Function to clear all items from the cart
   const clearCart = () => {
     dispatch(CLEAR_CART())
   }
 
+  // Effect to calculate subtotal and total quantity whenever cart items change
   useEffect(() => {
     dispatch(CALCULATE_SUBTOTAL())
     dispatch(CALCULATE_TOTAL_QUANTITY())
@@ -64,6 +72,7 @@ const Cart = () => {
 
   const url = window.location.href
 
+  // Function to handle checkout process
   const checkout = () => {
     if (isLoggedIn) {
       navigate('/checkout-details')
@@ -73,18 +82,22 @@ const Cart = () => {
     }
   }
 
-   const continueShop = () => {
-      navigate('/#product')  
+  // Function to navigate to the product section
+  const continueShop = () => {
+    navigate('/#product')
   }
 
+  // Function to format amount to Naira currency
   const formatNaira = (amount) => {
     return '₦' + amount.toLocaleString()
   }
 
+  // State to manage the preview toggle for each cart item
   const [showPreview, setShowPreview] = React.useState(
     Array(cartItems.length).fill(false),
   )
 
+  // Function to handle preview toggle for each cart item
   const handlePreview = (e, index) => {
     e.stopPropagation()
     const updateshowPreview = [...showPreview]
@@ -96,6 +109,7 @@ const Cart = () => {
       setShowPreview(Array(cartItems.length).fill(false))
     }
   }
+
   return (
     <>
       <section>
@@ -104,6 +118,7 @@ const Cart = () => {
             <BreadCrumbLayout title="Your Cart" />
           </div>
 
+          {/* Check if cart is empty */}
           {cartItems.length === 0 ? (
             <div className={styles['empty-container']}>
               <div className={styles['cart-icon']}>
@@ -118,147 +133,139 @@ const Cart = () => {
               </div>
             </div>
           ) : (
-              <div className={styles['table-content']}>
-                
-                <div>
-                    <table>
-                <thead>
-                  <tr>
-                    <th>s/n</th>
-                        <th>Product</th>
-                                                <th>Name</th>
-
-                        <th className={styles.hideOnMobile}>Price</th>
-                                            <th className={styles.hideOnMobile}>Size</th>
-
-                    <th className={styles.hideOnMobile}>Quantity</th>
-                    <th className={styles.hideOnMobile}>Total</th>
-                    <th>Action</th>
-                    <th className={styles.showOnMobile}></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cartItems?.map((cart, index) => {
-                    const { id, name, price, imageURL, cartQuantity, sizes } = cart
-                    return (
-                      <React.Fragment key={id}>
-                        <tr className={styles.productRow}>
-                          <td>{index + 1}</td>
-                          <td>
-                            <div className={styles.img}>
-                              <img
-                                src={imageURL}
-                                alt={name}
-                                style={{ width: '100px' }}
-                              />
-                            </div>
-                        
-                          </td>
-
-                                                    <td>{name}</td>
-
-                          <td className={styles.hideOnMobile}>
-                            {formatNaira(price)}
-                          </td>
-<td>{sizes && sizes.length > 0 ? capitalizeWords(sizes.join(', ')) : 'Nil'}</td>
-
-                          <td className={styles.hideOnMobile}>
-                            <div className={styles.count}>
-                              <button
-                                className="--btn"
-                                onClick={() => decreaseCart(cart)}
-                              >
-                                -
-                              </button>
-                              <p>
-                                <b>{cartQuantity}</b>
-                              </p>
-                              <button
-                                className="--btn"
-                                onClick={() => increaseCart(cart)}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </td>
-                          <td className={styles.hideOnMobile}>
-                            {formatNaira(price * cartQuantity)}
-                          </td>
-                          <td className={styles.icons}>
-                            <HiOutlineTrash
-                              size={19}
-                              color="#FF3B30"
-                              onClick={() => removeFromCart(cart)}
-                            />
-                          </td>
-                          <td className={styles.showOnMobile}>
-                            <button
-                              onClick={(e) => handlePreview(e, index)}
-                              title="preview-button"
-                            >
-                              {!showPreview[index] ? (
-                                <ChevronRightIcon
-                                  color="#007AFF"
-                                  size={25}
-                                  title="right-arrow-icon"
+            <div className={styles['table-content']}>
+              <div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>s/n</th>
+                      <th>Product</th>
+                      <th>Name</th>
+                      <th className={styles.hideOnMobile}>Price</th>
+                      <th className={styles.hideOnMobile}>Size</th>
+                      <th className={styles.hideOnMobile}>Quantity</th>
+                      <th className={styles.hideOnMobile}>Total</th>
+                      <th>Action</th>
+                      <th className={styles.showOnMobile}></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cartItems?.map((cart, index) => {
+                      const { id, name, price, imageURL, cartQuantity, sizes } = cart
+                      return (
+                        <React.Fragment key={id}>
+                          <tr className={styles.productRow}>
+                            <td>{index + 1}</td>
+                            <td>
+                              <div className={styles.img}>
+                                <img
+                                  src={imageURL}
+                                  alt={name}
+                                  style={{ width: '100px' }}
                                 />
-                              ) : (
-                                <ChevronDownIcon
-                                  color="#007AFF"
-                                  size={25}
-                                  title="down-arrow-icon"
-                                />
-                              )}
-                            </button>
-                          </td>
-                        </tr>
-                        {showPreview[index] && (
-                          <tr className={styles.additionalRow}>
-                            <td colSpan="6" className={styles.additionalInfo}>
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                                <p><strong>Name: </strong>{name}</p>
-                                <p><strong>Price: </strong>{formatNaira(price)}</p>
-                                <p>
-                                <strong>Quantity: </strong>{cartQuantity}
-                                  <div className={styles.count}>
-                                    <button
-                                      className="--btn"
-                                      onClick={() => decreaseCart(cart)}
-                                    >
-                                      -
-                                    </button>
-                                    <p>
-                                      <b>{cartQuantity}</b>
-                                    </p>
-                                    <button
-                                      className="--btn"
-                                     
-                                      onClick={() => increaseCart(cart)}
-                                    >
-                                      +
-                                    </button>
-                                  </div>
-                                </p>
-                                <p>
-                                  <strong>Total: </strong>{formatNaira(price * cartQuantity)}
-                                </p>
-                              </div>
-                              <div
-                                onClick={() => removeFromCart(cart)}
-                                style={{ color: '#FF3B30', textAlign: 'right' }}
-                                color="#FF3B30"
-                              >
-                                Delete
                               </div>
                             </td>
+                            <td>{name}</td>
+                            <td className={styles.hideOnMobile}>
+                              {formatNaira(price)}
+                            </td>
+                            <td>{sizes && sizes.length > 0 ? capitalizeWords(sizes.join(', ')) : 'Nil'}</td>
+                            <td className={styles.hideOnMobile}>
+                              <div className={styles.count}>
+                                <button
+                                  className="--btn"
+                                  onClick={() => decreaseCart(cart)}
+                                >
+                                  -
+                                </button>
+                                <p>
+                                  <b>{cartQuantity}</b>
+                                </p>
+                                <button
+                                  className="--btn"
+                                  onClick={() => increaseCart(cart)}
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </td>
+                            <td className={styles.hideOnMobile}>
+                              {formatNaira(price * cartQuantity)}
+                            </td>
+                            <td className={styles.icons}>
+                              <HiOutlineTrash
+                                size={19}
+                                color="#FF3B30"
+                                onClick={() => removeFromCart(cart)}
+                              />
+                            </td>
+                            <td className={styles.showOnMobile}>
+                              <button
+                                onClick={(e) => handlePreview(e, index)}
+                                title="preview-button"
+                              >
+                                {!showPreview[index] ? (
+                                  <ChevronRightIcon
+                                    color="#007AFF"
+                                    size={25}
+                                    title="right-arrow-icon"
+                                  />
+                                ) : (
+                                  <ChevronDownIcon
+                                    color="#007AFF"
+                                    size={25}
+                                    title="down-arrow-icon"
+                                  />
+                                )}
+                              </button>
+                            </td>
                           </tr>
-                        )}
-                      </React.Fragment>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
+                          {showPreview[index] && (
+                            <tr className={styles.additionalRow}>
+                              <td colSpan="6" className={styles.additionalInfo}>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                                  <p><strong>Name: </strong>{name}</p>
+                                  <p><strong>Price: </strong>{formatNaira(price)}</p>
+                                  <p>
+                                    <strong>Quantity: </strong>{cartQuantity}
+                                    <div className={styles.count}>
+                                      <button
+                                        className="--btn"
+                                        onClick={() => decreaseCart(cart)}
+                                      >
+                                        -
+                                      </button>
+                                      <p>
+                                        <b>{cartQuantity}</b>
+                                      </p>
+                                      <button
+                                        className="--btn"
+                                        onClick={() => increaseCart(cart)}
+                                      >
+                                        +
+                                      </button>
+                                    </div>
+                                  </p>
+                                  <p>
+                                    <strong>Total: </strong>{formatNaira(price * cartQuantity)}
+                                  </p>
+                                </div>
+                                <div
+                                  onClick={() => removeFromCart(cart)}
+                                  style={{ color: '#FF3B30', textAlign: 'right' }}
+                                  color="#FF3B30"
+                                >
+                                  Delete
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </React.Fragment>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
               <div className={styles.summary}>
                 <Card cardClass={styles.card}>
                   <div className={styles.text}>
@@ -303,6 +310,7 @@ const Cart = () => {
             </div>
           )}
 
+          {/* Button to clear the cart if there are items in it */}
           {cartItems.length !== 0 ? (
             <button
               className="--btn"

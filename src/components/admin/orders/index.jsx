@@ -14,6 +14,7 @@ import { ChevronRightIcon, ChevronDownIcon, Pagination } from "evergreen-ui";
 import { formatNaira } from "../../../@core/utils";
 
 const Orders = () => {
+  //State and Variables
   const { data, isLoading } = useFetchCollection("orders");
   const orders = useSelector(selectOrderHistory);
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Orders = () => {
     { title: 'Orders' },
   ];
 
+  //UseEffect
   useEffect(() => {
     dispatch(setBreadCrumb(breadcrumb));
     dispatch(STORE_ORDERS(data));
@@ -52,6 +54,7 @@ const Orders = () => {
     Array(orders.length).fill(false)
   );
 
+  //Preview for Mobile Scren
   const handlePreview = (e, index) => {
     e.stopPropagation();
     const updatedPreview = [...showPreview];

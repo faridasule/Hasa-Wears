@@ -1,29 +1,27 @@
 .charts {
-    width: 30%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
-    h4{
-      font-size: 14px;
-      font-weight: 600;
-      color: #000;
-      margin-bottom: 20px;
-      margin-top: -20px;
-    }
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
 }
 
 canvas {
-  width: 100% !important; 
-  height: auto !important; 
+  width: 100% !important;
+  height: auto !important;
 }
 @media (max-width: 700px) {
-
-    .charts{
-            width: 100%;
-            max-width: 300px;
-            margin: auto;
-
-    }
+  .charts {
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+  }
 }

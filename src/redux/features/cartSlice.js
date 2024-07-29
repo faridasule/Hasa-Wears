@@ -39,7 +39,6 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     DECREASE_CART(state, action) {
-      console.log(action.payload);
       const productIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );

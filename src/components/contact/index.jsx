@@ -10,7 +10,6 @@ const Contact = () => {
   // Function to handle form submission
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log(form.current);
 
     emailjs
       .sendForm(

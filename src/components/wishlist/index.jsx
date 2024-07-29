@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './wishlist.module.scss';
 import { selectWishlistItems, REMOVE_FROM_WISHLIST } from '../../redux/features/wishlistSlice';
 import { ADD_TO_CART } from '../../redux/features/cartSlice';
+import { formatNaira } from '../../@core/utils';
 
 const Wishlist = ({ closeDialog }) => {
   const dispatch = useDispatch();
@@ -13,10 +14,7 @@ const Wishlist = ({ closeDialog }) => {
   const [showPreview, setShowPreview] = useState(Array(wishlistItems.length).fill(false));
   const navigate = useNavigate();
 
-  const formatNaira = (amount) => {
-    return '₦' + amount.toLocaleString();
-  };
-
+//Functions
   const addToCart = (product) => {
     dispatch(ADD_TO_CART(product));
   };

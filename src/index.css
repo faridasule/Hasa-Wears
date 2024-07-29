@@ -9,25 +9,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-
 :root {
   /* --font-family: "Poppins", "Lexend Deca" sans-serif; */
+  
   --dark-blue: #000033;
   --light-blue: #1f93ff;
-
   --color-white: #fff;
-  --color-dark: #252C32;
-    --color-gray: #777;
-
+  --color-dark: #252c32;
+  --color-gray: #777;
   --text-color: #444444;
-
-  --color-grey: #eee;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-
-  --color-purple: #9d0191;
-  --color-orange: #ff7722;
-
-  --color-primary:  #007AFF;
+  --color-primary: #007aff;
   --color-success: #28a745;
   --color-danger: #d32e2d;
 }
@@ -45,14 +37,22 @@ html {
 }
 
 body {
-  /* font-family: var(--font-family); */
-      font-family: "Lexend Deca", sans-serif !important;
-      height: 100%;
-
+  font-family: 'Lexend Deca', sans-serif !important;
+  height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, li, a, p, b, span {
-    font-family: "Lexend Deca", sans-serif !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+a,
+p,
+b,
+span {
+  font-family: 'Lexend Deca', sans-serif !important;
 }
 
 section {
@@ -64,7 +64,6 @@ section {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
-  /* width: 90%; */
 }
 
 /* UTILITY CLASSES */
@@ -203,10 +202,10 @@ p {
 }
 
 .--color-primary {
-  color: #4094F7;
+  color: #4094f7;
 }
 .--color-danger {
-  color: #FCC200;
+  color: #fcc200;
 }
 .--color-success {
   color: #28a745;
@@ -322,8 +321,7 @@ p {
 
 .--btn-primary {
   color: #fff;
-  background: #4094F7
- !important;
+  background: #4094f7 !important;
 }
 .--btn-secondary {
   color: #fff;
@@ -332,7 +330,7 @@ p {
 }
 .--btn-danger {
   color: #fff;
-  background: #d32e2d ;
+  background: #d32e2d;
 }
 
 .--btn-success {
@@ -416,7 +414,7 @@ p {
   position: relative;
 }
 .--line::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: -5px;
@@ -446,31 +444,24 @@ p {
 
 a {
   font-size: 1.4rem;
-  /* color: var(--dark-blue); */
   text-decoration: none;
   transition: all 0.2s;
 }
 
-a:hover {
-  /* color: var(--color-dark); */
-  font-size: 1.5rem;
-}
-
 .go4197845992 {
-  /* font-size: 20px !important; */
-  margin-left: 1rem !important; 
+  margin-left: 1rem !important;
 }
 
 .go1037073932 {
-color: #ffcc00 !important;
+  color: #ffcc00 !important;
 }
 
-.search_search__SVsy5 input[type=text]{
-  border: 1px solid #DDE2E4 !important;
+.search_search__SVsy5 input[type='text'] {
+  border: 1px solid #dde2e4 !important;
 }
 
-.css-zza0ns-MuiBadge-badge{
-  background-color: #F76659 !important;
-  color: #FFEFEB !important;
+.css-zza0ns-MuiBadge-badge {
+  background-color: #f76659 !important;
+  color: #ffefeb !important;
   font-size: 10px !important;
 }

@@ -10,8 +10,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-     const slideLength = sliderData.length;
-  //   console.log(slideLength);
+    const slideLength = sliderData.length;
 
   const autoScroll = true;
   let slideInterval;
@@ -29,9 +28,6 @@ const Slider = () => {
     setCurrentSlide(0);
   }, []);
 
-  //   const auto = () => {
-  //     slideInterval = setInterval(nextSlide, intervalTime);
-  //   };
 
   useEffect(() => {
     if (autoScroll) {
@@ -62,7 +58,6 @@ const Slider = () => {
                   <p style={{color: '#FFCC00', fontWeight: '400', fontSize: '36px', lineHeight: '46px'}}>Hot Sales!</p>
                   <h2>{heading}</h2>
                   <p>{desc}</p>
-                  {/* <hr /> */}
                   <a href="#product" style={{backgroundColor: '#005EB2', display:'flex', gap: '1rem', padding: '1rem 5rem', marginTop: '3rem'}} className="--btn --btn-primary">
                     <MdShoppingCart size={25}/> <span>Shop Now</span>
                   </a>

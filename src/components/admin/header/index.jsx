@@ -1,13 +1,9 @@
 import styles from "./header.module.scss";
 import React, { useEffect, useState } from "react";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import {onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import {Link } from "react-router-dom";
-
-
-
-
-import { SideSheet, Position, Avatar } from "evergreen-ui";
+import { Link } from "react-router-dom";
+import { SideSheet, Position} from "evergreen-ui";
 import { RxHamburgerMenu } from "react-icons/rx";
 import NavBar from "../navbar";
 import {
@@ -18,20 +14,17 @@ import {
 import { auth } from "../../../firebase/config";
 import AvatarPopover from "../../avartar-popovers";
 
-
-
-const AdminHeader = ({mode}) => {
-	const [showLogin, setShowLogin] = useState(false);
-	const [showMobileNav, setShowMobileNav] = useState(false);
+const AdminHeader = ({ mode }) => {
+  const [showMobileNav, setShowMobileNav] = useState(false);
   const [displayName, setDisplayName] = useState("");
   const dispatch = useDispatch();
-
-	  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
+    // Check if a user is authenticated and set user details
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        if (user.displayName == null) {
+        if (!user.displayName) {
           const u1 = user.email.substring(0, user.email.indexOf("@"));
           const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
           setDisplayName(uName);
@@ -42,7 +35,7 @@ const AdminHeader = ({mode}) => {
         dispatch(
           SET_ACTIVE_USER({
             email: user.email,
-            userName: user.displayName ? user.displayName : displayName,
+            userName: user.displayName || displayName,
             userID: user.uid,
           })
         );
@@ -52,8 +45,9 @@ const AdminHeader = ({mode}) => {
       }
     });
   }, [dispatch, displayName]);
-	
+
   useEffect(() => {
+    // Handle resizing to close mobile nav if window width exceeds 900px
     const handleResize = () => {
       if (window.innerWidth > 900) {
         setShowMobileNav(false);
@@ -67,85 +61,63 @@ const AdminHeader = ({mode}) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-	
-	return (
-		<>
 
-			<header className={styles.header}>
-				<span className={styles["logo-wrapper"]}>
-					<RxHamburgerMenu
-						size={25}
-						onClick={() => {
-							setShowMobileNav(!showMobileNav);
-						}}
-						 color="#252C32"
-					/>
-					{mode !== 'Full' ?
-						<div className={styles.logo}>
-							<Link to="/">
-								<h2>
-									Hasa<span>Wears</span>.
-								</h2>
-							</Link>
-						</div> : ''}
-				</span>
-				{/* {!withoutSearch && (
-					<div className={styles["search-wrapper"]}>
-						<Search />
-					</div>
-				)} */}
+  return (
+    <>
+      <header className={styles.header}>
+        <span className={styles["logo-wrapper"]}>
+          <RxHamburgerMenu
+            size={25}
+            onClick={() => setShowMobileNav(!showMobileNav)}
+            color="#252C32"
+          />
+          {mode !== 'Full' && (
+            <div className={styles.logo}>
+              <Link to="/">
+                <h2>
+                  Hasa<span>Wears</span>.
+                </h2>
+              </Link>
+            </div>
+          )}
+        </span>
 
-					<ul className={styles.nav}>
-						<li>
-							<a href="/">Home</a>
-						</li>
-						<li>
-							<a href="/about" >About</a>
-						</li>
-						{/* <li>
-							<Link href={{ pathname: "/community" }}>Community</Link>
-						</li> */}
-						{/* <li>
-							<Link href={{ pathname: "/contact-us" }}>Contact Us</Link>
-						</li> */}
-						<li>
-							<a href={{ pathname: "/contact" }}>Contact Us</a>
-						</li>
-					</ul>
-				<ul className={styles.started}>
-					
-					 <li className={styles["name"]}>
-              {isLoggedIn && (
-                <a color="#fff" href="#home">
-                  {/* <Avatar
-                    name={displayName}
-                    size={35}
-                    hashValue="id_124"
-									// marginRight={16}
-									className={styles.avatar}
-                  /> */}
-								<AvatarPopover displayName={displayName}/>
-                </a>
-              )}
+        <ul className={styles.nav}>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/contact">Contact Us</a>
+          </li>
+        </ul>
+
+        <ul className={styles.started}>
+          {isLoggedIn && (
+            <li className={styles["name"]}>
+              <a color="#fff" href="#home">
+                <AvatarPopover displayName={displayName} />
+              </a>
             </li>
-                	</ul> 
-			</header>
+          )}
+        </ul>
+      </header>
 
-			<SideSheet
-				isShown={showMobileNav}
-				onCloseComplete={() => {
-					setShowMobileNav(false);
-				}}
-				position={Position.LEFT}
-				width={"80dvw"}
-				preventBodyScrolling
-			>
-				<div onClick={() => setShowMobileNav(false)}>
-					<NavBar mode={"Full"} />
-				</div>
-			</SideSheet>
-		</>
-	);
+      <SideSheet
+        isShown={showMobileNav}
+        onCloseComplete={() => setShowMobileNav(false)}
+        position={Position.LEFT}
+        width={"80dvw"}
+        preventBodyScrolling
+      >
+        <div onClick={() => setShowMobileNav(false)}>
+          <NavBar mode={"Full"} />
+        </div>
+      </SideSheet>
+    </>
+  );
 };
 
 export default AdminHeader;

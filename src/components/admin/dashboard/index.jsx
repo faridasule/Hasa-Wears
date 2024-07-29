@@ -26,14 +26,17 @@ const productIcon = <BsCart4 size={22} color="#BDBDBD" />;
 const ordersIcon = <FaCartArrowDown size={20} color="#BDBDBD" />;
 
 const Dashboard = () => {
+
+  //States
   const products = useSelector(selectProducts);
   const orders = useSelector(selectOrderHistory);
   const totalOrderAmount = useSelector(selectTotalOrderAmount);
-console.log(totalOrderAmount, 'amount')
   const fbProducts = useFetchCollection("products");
   const { data } = useFetchCollection("orders");
 
   const dispatch = useDispatch();
+
+  // UseEffect
   useEffect(() => {
     dispatch(
       STORE_PRODUCTS({

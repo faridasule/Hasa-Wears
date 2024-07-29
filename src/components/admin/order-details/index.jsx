@@ -11,6 +11,7 @@ import Loader from '../../content-loader';
 import { formatNaira } from '../../../@core/utils';
 
 const OrderDetails = () => {
+  //State and Variables
   const [order, setOrder] = useState(null);
   const [imageErrors, setImageErrors] = useState({});
   const [showPreview, setShowPreview] = useState([]);
@@ -18,6 +19,7 @@ const OrderDetails = () => {
   const { document } = useFetchDocument('orders', id);
   const dispatch = useDispatch();
 
+  //UseEffect
   useEffect(() => {
     dispatch(setBreadCrumb([
       { title: 'Dashboard', url: '/dashboard' },
@@ -36,6 +38,8 @@ const OrderDetails = () => {
     }
   }, [order]);
 
+
+
   const handleImageError = (index) => {
     setImageErrors((prevErrors) => ({
       ...prevErrors,
@@ -43,6 +47,7 @@ const OrderDetails = () => {
     }));
   };
 
+  //Handle Toggle for Mobile screens
   const handlePreview = (e, index) => {
     e.stopPropagation();
     const updatedShowPreview = [...showPreview];

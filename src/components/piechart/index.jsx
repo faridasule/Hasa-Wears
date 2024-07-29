@@ -62,10 +62,8 @@ const Chart = () => {
 
   return (
     <div className={styles.charts}>
-      {/* <Card cardClass={styles.card}> */}
       <h4>Order Status Chart</h4>
       <Pie data={data} options={options} />
-      {/* </Card> */}
     </div>
   )
 }

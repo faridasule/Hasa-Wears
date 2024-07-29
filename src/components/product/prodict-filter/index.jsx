@@ -15,15 +15,16 @@ import styles from "./product-filter.module.scss";
 import { formatNaira } from "../../../@core/utils";
 
 const ProductFilter = () => {
+  // States and Variables
   const [category, setCategory] = useState("All");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(3000);
   const products = useSelector(selectProducts);
   const minPrice = useSelector(selectMinPrice);
   const maxPrice = useSelector(selectMaxPrice);
-
   const dispatch = useDispatch();
 
+  // Create arrays of unique categories and brands from the products array
   const allCategories = [
     "All",
     ...new Set(products.map((product) => product.category)),
@@ -32,32 +33,38 @@ const ProductFilter = () => {
     ...new Set(products.map((product) => product.brand)),
   ];
 
+  // Filter products by brand whenever the brand state changes
   useEffect(() => {
     if (brand) {
       dispatch(FILTER_BY_BRAND({ products, brand }));
     }
   }, [dispatch, products, brand]);
 
+  // Filter products by price whenever the price state changes
   useEffect(() => {
     dispatch(FILTER_BY_PRICE({ products, price }));
   }, [dispatch, products, price]);
 
+  // Update category state and dispatch category filter action
   const handleCategoryChange = (cat) => {
     setCategory(cat);
     setBrand(""); // Clear the brand when category changes
     dispatch(FILTER_BY_CATEGORY({ products, category: cat }));
   };
 
+  // Update brand state and dispatch brand filter action
   const handleBrandChange = (brd) => {
     setBrand(brd);
     setCategory(""); // Clear the category when brand changes
     dispatch(FILTER_BY_BRAND({ products, brand: brd }));
   };
 
+  // Update price state when the slider value changes
   const handlePriceChange = (event, newValue) => {
     setPrice(newValue);
   };
 
+  // Reset all filter states to their default values
   const clearFilters = () => {
     setCategory("All");
     setBrand("");

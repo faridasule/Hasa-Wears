@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Popover, Menu, Position, Avatar, Dialog, Heading, Paragraph, Button } from 'evergreen-ui';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { clearEmail } from '../../redux/features/authSlice';
 import { auth } from '../../firebase/config';
 import { toast } from 'react-toastify';
 import { signOut } from 'firebase/auth';
@@ -12,7 +10,6 @@ import style from './avartar.module.scss'
 const AvatarPopover = ({ displayName }) => {
   const [showDialog, setShowDialog] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleLogout = () => {
     setShowDialog(true);
@@ -22,14 +19,13 @@ const AvatarPopover = ({ displayName }) => {
     signOut(auth)
       .then(() => {
         toast.success('Logout successfully.');
-        // dispatch(clearEmail()); // Clear email from Redux store
         navigate('/');
       })
       .catch((error) => {
         toast.error(error.message);
       })
       .finally(() => {
-        setShowDialog(false); // Close the dialog after attempting to log out
+        setShowDialog(false);
       });
   };
 

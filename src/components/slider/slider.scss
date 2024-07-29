@@ -20,7 +20,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Ensure image scales with container while maintaining aspect ratio */
 }
 
 .content {
@@ -33,7 +32,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.5); /* Overlay with transparency */
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.5s ease;
   text-align: center;
@@ -104,11 +103,10 @@ hr {
 
 @media screen and (max-width: 600px) {
   .slide img {
-    object-fit: cover; /* Ensures the image covers the container on small screens */
+    object-fit: cover;
   }
 
   .content {
-    // width: 80%;
     padding: 2rem;
 
     h2 {

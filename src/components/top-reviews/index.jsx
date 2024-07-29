@@ -4,18 +4,6 @@ import styles from './top-review.module.scss'
 import defaultImage from '../../assets/user.svg'
 import StarRating from '../star'
 
-// Function to get star rating as stars
-// const StarRating = ({ rate }) => {
-//   return (
-//     <div className={styles.stars}>
-//       {Array.from({ length: 5 }, (_, index) => (
-//         <span key={index} className={index < rate ? styles.starFilled : styles.starEmpty} >
-//           ★
-//         </span>
-//       ))}
-//     </div>
-//   )
-// }
 
 const TopReviews = () => {
   const { data: reviewsData, isLoading } = useFetchCollection('reviews')
@@ -48,13 +36,12 @@ const TopReviews = () => {
               />
               <div className={styles.reviewContent}>
                 <p>{review.review}</p>
-                <h3>{review.userName}</h3>
-                {/* <StarRating rate={review.rate || 0} /> */}
-                   <StarRating
+                <h3>{`By: ${review.userName}`}</h3>
+                  <StarRating
                   count={5}
                   value={review.rate || 0}
                   size={16}
-                  color={"#ffd700"} // Adjust the color as needed
+                  color={"#ffd700"} 
                 />
               </div>
             </div>

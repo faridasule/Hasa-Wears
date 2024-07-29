@@ -1,8 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "./breadcrumbLayout.module.scss";
-import Header from "../header/index";
 
 const BreadCrumbLayout = (props) => {
   const { children, title, action, withBackground } = props;
@@ -11,9 +10,6 @@ const BreadCrumbLayout = (props) => {
 
   return (
       <div className={styles.wrapper}>
-          
-                  {/* <Header /> */}
-
       <div className={styles.header}>
         <div>
           <h2>{title ?? ""}</h2>

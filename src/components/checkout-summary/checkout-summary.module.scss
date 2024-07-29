@@ -2,7 +2,6 @@
   width: 100%;
   max-width: 500px;
   padding: 1rem;
-  // border: 1px solid var(--light-blue);
   margin-bottom: 5px;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -28,7 +27,7 @@ p{
 .image {
   width: 80px;
   height: 80px;
-  object-fit: cover; /* This maintains the aspect ratio and fills the given dimension */
+  object-fit: cover;
 }
 
    .summary {
@@ -65,12 +64,9 @@ p{
             font-size: 16px !important;
           }
         }
-
         button {
           margin-top: 5px;
         }
-      }
-
-   
+      } 
     }
   

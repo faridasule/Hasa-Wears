@@ -40,17 +40,17 @@ const ViewProducts = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogMode, setDialogMode] = useState('ADD'); // Default mode
   const [editProductId, setEditProductId] = useState(null); // For editing
-
+  const dispatch = useDispatch();
+  const { data, isLoading } = useFetchCollection('products');
+  const products = useSelector(selectProducts);
+  const filteredProducts = useSelector(selectFilteredProducts);
   const breadcrumb = [
     { title: 'Dashboard', url: '/dashboard' },
     { title: 'Manage Products' },
   ];
-  const dispatch = useDispatch();
-  dispatch(setBreadCrumb(breadcrumb));
+  
+    dispatch(setBreadCrumb(breadcrumb));
 
-  const { data, isLoading } = useFetchCollection('products');
-  const products = useSelector(selectProducts);
-  const filteredProducts = useSelector(selectFilteredProducts);
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -78,6 +78,7 @@ const ViewProducts = () => {
     setCurrentPage(page);
   };
 
+  //UseEffect
   useEffect(() => {
     dispatch(STORE_PRODUCTS({ products: data }));
   }, [dispatch, data]);
@@ -86,6 +87,8 @@ const ViewProducts = () => {
     dispatch(FILTER_BY_SEARCH({ products, search }));
   }, [dispatch, products, search]);
 
+
+  //Delete Dialog
   const confirmDelete = (id, imageURL) => {
     Notiflix.Confirm.show(
       'Delete Product',
@@ -104,6 +107,7 @@ const ViewProducts = () => {
     );
   };
 
+  //Delete Product Function
   const deleteProduct = async (id, imageURL) => {
     try {
       await deleteDoc(doc(db, 'products', id));
@@ -116,6 +120,8 @@ const ViewProducts = () => {
     }
   };
 
+
+  //Handle Toggle for Mobile Screens
   const [showPreview, setShowPreview] = useState(Array(filteredProducts.length).fill(false));
 
   const handlePreview = (e, index) => {
@@ -130,11 +136,13 @@ const ViewProducts = () => {
     }
   };
 
+//Close Dialogs
   const handleClose = () => {
     setIsDialogOpen(false);
     setEditProductId(null);
   };
 
+//Open Eedit Dialog
   const openEditProductDialog = (id) => {
     setDialogMode('EDIT');
     setEditProductId(id);

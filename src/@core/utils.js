@@ -8,7 +8,6 @@ export const capitalizeWords = (str) => {
 
 // Formats a number as Nigerian Naira currency.
 export const formatNaira = (amount) => {
-  // Check if amount is a valid number
 
   if (amount == null || isNaN(amount)) {
     return '₦0'

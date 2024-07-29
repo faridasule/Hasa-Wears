@@ -26,7 +26,7 @@
       font-weight: 400;
       line-height: 24px;
       font-size: 14px;
-      margin-top: 1rem; /* Add some margin for better spacing */
+      margin-top: 1rem;
     }
 
     h5 {
@@ -149,10 +149,10 @@
     background-color: #eee;
 
     .form {
-      width: 100%; /* Ensure full width */
+      width: 100%;
       max-width: 35rem;
-      padding: 2.5rem 1rem; /* Adjusted padding */
-      box-sizing: border-box; /* Ensure padding is included in width */
+      padding: 2.5rem 1rem;
+      box-sizing: border-box;
     }
   }
 
@@ -167,7 +167,7 @@
 
   .passwordToggle {
     position: absolute;
-    right: 10px !important; /* Adjusted right positioning */
+    right: 10px !important;
   }
 }
 
@@ -176,10 +176,10 @@
     margin: 0 !important;
 
     .form {
-      width: 100%; /* Ensure full width */
+      width: 100%;
       max-width: 20rem;
       padding: 2rem 0.5rem;
-      box-sizing: border-box; /* Ensure padding is included in width */
+      box-sizing: border-box;
     }
   }
 
