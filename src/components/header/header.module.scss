@@ -24,7 +24,7 @@ header {
     position: relative;
   }
 
-  .logo-wrapper{
+  .logo-wrapper {
     display: flex;
     align-items: center;
     // justify-content: center;
@@ -39,8 +39,7 @@ header {
     cursor: pointer;
     span {
       color: var(--color-dark);
-          font-size: 26px;
-
+      font-size: 26px;
     }
   }
 
@@ -196,13 +195,12 @@ header {
     display: none;
   }
 
-     .mobile-avartar {
-      display: none;
-    }
+  .mobile-avartar {
+    display: none;
+  }
 
   @media screen and (max-width: 900px) {
-
-    .header{
+    .header {
       padding-left: 0;
     }
 
@@ -210,9 +208,9 @@ header {
       position: relative;
       display: inline-block;
     }
-.logo{
-  margin-top: 8px;
-}
+    .logo {
+      margin-top: 8px;
+    }
     .logo a h2 {
       width: 20%;
       font-size: 24px !important;
@@ -259,7 +257,7 @@ header {
       border-radius: 5px;
     }
 
-       .mobile-avartar {
+    .mobile-avartar {
       display: block;
     }
 
@@ -339,17 +337,6 @@ header {
         display: block;
         .cart {
           display: none;
-          // padding: 5px 0;
-          // border-bottom: 1px solid #333;
-          // a {
-          //   position: relative;
-          //   p {
-          //     position: absolute;
-          //     top: -1rem;
-          //     left: 5rem;
-          //     font-weight: 500;
-          //   }
-          // }
         }
 
         .links {
@@ -358,7 +345,6 @@ header {
             display: block;
             margin: 0;
             padding: 5px 0;
-            // border-bottom: 1px solid #333;
           }
           .auth {
             width: 50%;
@@ -371,7 +357,6 @@ header {
     .cart {
       display: block;
       padding: 5px 0;
-      // border-bottom: 1px solid #333;
       a {
         color: var(--text-color);
 

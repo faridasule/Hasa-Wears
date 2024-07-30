@@ -20,8 +20,9 @@ import { selectShippingAddress } from '../../redux/features/checkoutSlice'
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { Dialog, Pane, Text, Heading } from 'evergreen-ui'
-import FlutterPay from "../../components/flutter/flutter"
+import FlutterPay from "../../components/paystack/paystack"
 import LoadingIcons from "react-loading-icons"
+import PaystackPay from '../../components/paystack/paystack'
 
 const initialAddressState = {
   name: '',
@@ -235,7 +236,7 @@ const CheckoutDetails = () => {
             </Text>
           </Pane>
           <Pane display="flex" justifyContent="flex-end" marginTop={20}>
-            <FlutterPay onPay={handleDialogClose} />
+         <PaystackPay onPay={handleSubmit}  handleDialogClose={handleDialogClose} />
           </Pane>
         </Dialog>
       </div>
