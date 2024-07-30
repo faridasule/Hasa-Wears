@@ -69,13 +69,13 @@ const Footer = () => {
           </div>
 
           <div className={styles['social-icons']}>
-            <a href="https://www.facebook.com/bello.ozozahuwa?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/bello.ozozahuwa?mibextid=LQQJ4d" >
               <FaFacebook />
             </a>
-            <a href="https://www.tiktok.com/@hasawears.hasawea?_t=8oSjDdZCeub&_r=1" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.tiktok.com/@hasawears.hasawea?_t=8oSjDdZCeub&_r=1">
               <FaTiktok />
             </a>
-            <a href="https://wa.me/2348108928985" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/2348108928985">
               <FaWhatsapp />
             </a>
           </div>
