@@ -1,7 +1,7 @@
-import React from 'react'
-import styles from './footer.module.scss'
-import { Link } from 'react-router-dom'
-import { FaFacebook, FaTiktok, FaWhatsapp, FaEnvelope } from 'react-icons/fa'
+import React from 'react';
+import styles from './footer.module.scss';
+import { Link } from 'react-router-dom';
+import { FaFacebook, FaTiktok, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 
 const logo = (
   <div className={styles.logo}>
@@ -11,7 +11,7 @@ const logo = (
       </h2>
     </Link>
   </div>
-)
+);
 
 const Footer = () => {
   return (
@@ -32,17 +32,16 @@ const Footer = () => {
             <li>Footwear</li>
             <li>Electronics</li>
             <li>Accessories</li>
-
           </ul>
         </div>
         <div className={styles['footer-column']}>
           <h3>Company</h3>
           <ul>
             <li>
-              <a href="/about">About Us</a>
+              <Link to="/about">About Us</Link>
             </li>
             <li>
-              <a href="/contact">Contact Us</a>
+              <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -70,14 +69,20 @@ const Footer = () => {
           </div>
 
           <div className={styles['social-icons']}>
-            <FaFacebook />
-            <FaTiktok />
-            <FaWhatsapp />
+            <a href="https://www.facebook.com/bello.ozozahuwa?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
+              <FaFacebook />
+            </a>
+            <a href="https://www.tiktok.com/@hasawears.hasawea?_t=8oSjDdZCeub&_r=1" target="_blank" rel="noopener noreferrer">
+              <FaTiktok />
+            </a>
+            <a href="https://wa.me/2348108928985" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp />
+            </a>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
