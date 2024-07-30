@@ -290,7 +290,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
         <label htmlFor="image">Product image:</label>
         <div className={styles.uploaderCard}>
           <FileUploader
-            description="You can upload 1 file. File can be up to 50 MB."
+            description="You can upload 1 file. File can be up to 5 MB."
             maxSizeInBytes={50 * 1024 ** 2}
             maxFiles={1}
             onChange={handleChange}
