@@ -5,15 +5,16 @@ import { selectEmail } from "../../redux/features/authSlice";
 
 const AdminOnlyRoute = ({ children }) => {
   const userEmail = useSelector(selectEmail);
+  const adminEmails = ["admin@gmail.com", "guest@gmail.com"];
 
-  if (userEmail === "admin@gmail.com") {
+  if (adminEmails.includes(userEmail)) {
     return children;
   }
   return (
     <section style={{ height: "80vh" }}>
       <div className="container">
         <h2>Permission Denied.</h2>
-        <p>This page can only be view by an Admin user.</p>
+        <p>This page can only be viewed by an Admin user.</p>
         <br />
         <Link to="/">
           <button className="--btn">&larr; Back To Home</button>
@@ -25,13 +26,12 @@ const AdminOnlyRoute = ({ children }) => {
 
 export const AdminOnlyLink = ({ children }) => {
   const userEmail = useSelector(selectEmail);
+  const adminEmails = ["admin@gmail.com", "guest@gmail.com"];
 
-  if (userEmail === "admin@gmail.com") {
+  if (adminEmails.includes(userEmail)) {
     return children;
   }
   return null;
 };
 
 export default AdminOnlyRoute;
-
-

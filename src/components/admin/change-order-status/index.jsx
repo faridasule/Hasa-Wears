@@ -1,4 +1,4 @@
-import { collection, doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,6 +7,9 @@ import Card from "../../card/index";
 import Loader from "../../content-loader";
 import { Select } from "evergreen-ui";
 import styles from "./change-order-status.module.scss";
+import { selectEmail } from '../../../redux/features/authSlice';
+import { useSelector } from 'react-redux';
+
 
 const ChangeOrderStatus = ({ order, id }) => {
 
@@ -14,6 +17,8 @@ const ChangeOrderStatus = ({ order, id }) => {
   const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate(); 
+  const userEmail = useSelector(selectEmail);
+
 
   // Function to edit order status
   const editOrder = async (e, id) => {
@@ -76,7 +81,7 @@ const ChangeOrderStatus = ({ order, id }) => {
               </Select>
             </span>
             <span className={styles.button}>
-              <button type="submit" className="--btn --btn-primary">
+              <button  disabled={userEmail === 'guest@gmail.com'} type="submit" className="--btn --btn-primary">
                 Update Status
               </button>
             </span>

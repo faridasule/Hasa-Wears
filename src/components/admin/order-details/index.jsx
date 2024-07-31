@@ -84,7 +84,7 @@ const OrderDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {order.cartItems.map((cart, index) => {
+            {order.cartItems?.map((cart, index) => {
               const { id, name, price, imageURL, cartQuantity } = cart;
               return (
                 <React.Fragment key={id}>

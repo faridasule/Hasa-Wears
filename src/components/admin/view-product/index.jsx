@@ -34,10 +34,13 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import AddProduct from '../../../components/admin/add-product/index';
 import { formatNaira } from '../../../@core/utils';
+import { selectEmail } from '../../../redux/features/authSlice';
+
 
 const ViewProducts = () => {
   const [search, setSearch] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const userEmail = useSelector(selectEmail);
   const [dialogMode, setDialogMode] = useState('ADD'); // Default mode
   const [editProductId, setEditProductId] = useState(null); // For editing
   const dispatch = useDispatch();
@@ -149,6 +152,19 @@ const ViewProducts = () => {
     setIsDialogOpen(true);
   };
 
+//Function to allow only admin edit and delete
+     const handleEditClick = (id) => {
+    if (userEmail !== 'guest@gmail.com') {
+      openEditProductDialog(id);
+    }
+  };
+
+  const handleDeleteClick = (id, imageURL) => {
+    if (userEmail !== 'guest@gmail.com') {
+      confirmDelete(id, imageURL);
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -197,8 +213,8 @@ const ViewProducts = () => {
                         <td className={styles.hideOnMobile}>{category}</td>
                         <td className={styles.hideOnMobile}>{formatNaira(price)}</td>
                         <td className={`${styles.icons} ${styles.hideOnMobile}`}>
-                          <FaEdit size={20} color="#007AFF" onClick={() => openEditProductDialog(id)} />
-                          <RiDeleteBin2Fill size={20} color="#FF3B30" onClick={() => confirmDelete(id, imageURL)} />
+                          <FaEdit size={20} color="#007AFF" onClick={() => handleEditClick(id)} />
+                          <RiDeleteBin2Fill size={20} color="#FF3B30" onClick={() => handleDeleteClick(id, imageURL)} />
                         </td>
                         <td className={`${styles.icon} ${styles.showOnMobile}`}>
                           <button onClick={(e) => handlePreview(e, index)} title="preview-button">

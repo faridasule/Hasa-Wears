@@ -18,6 +18,7 @@ import { db, storage } from '../../../firebase/config';
 import styles from './add-product.module.scss';
 import { CiShoppingCart } from 'react-icons/ci';
 import { selectProducts } from '../../../redux/features/productSlice';
+import { selectEmail } from '../../../redux/features/authSlice';
 import { FileUploader, FileCard, Select } from 'evergreen-ui';
 import LoadingIcons from 'react-loading-icons';
 import { toast } from 'react-toastify';
@@ -53,6 +54,7 @@ const initialState = {
 
 const AddProduct = ({ dialogMode, onClose, id }) => {
   const products = useSelector(selectProducts);
+  const userEmail = useSelector(selectEmail);
   const productEdit = products.find((item) => item.id === id);
   const [product, setProduct] = useState({ ...initialState });
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -61,6 +63,8 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   const [fileRejections, setFileRejections] = useState([]);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  console.log(userEmail, 'email')
 
   // UseEffect to set product data for editing
   useEffect(() => {
@@ -147,6 +151,10 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   // Add product to the database
   const addProduct = async (e) => {
     e.preventDefault();
+    if (userEmail === 'guestemail@gmail.com') {
+      toast.error('Guest users are not allowed to add products.');
+      return;
+    }
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -178,6 +186,10 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
   // Edit product in the database
   const editProduct = async (e) => {
     e.preventDefault();
+    if (userEmail === 'guestemail@gmail.com') {
+      toast.error('Guest users are not allowed to edit products.');
+      return;
+    }
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -209,6 +221,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
     }
   };
 
+ 
   return (
     <div className={styles.product}>
       <div className={styles['cart-icon']}>
@@ -263,7 +276,7 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
         </Select>
         {errors.category && <div className={styles.error}>{errors.category}</div>}
 
-        <label>Product Company/Brand:</label>
+        <label>Product Brand:</label>
         <input
           type="text"
           name="brand"
@@ -330,7 +343,11 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
         {errors.desc && <div className={styles.error}>{errors.desc}</div>}
 
         <div className={styles['btn-wrap']}>
-          <button className="--btn --btn-primary" type="submit">
+          <button
+            className="--btn --btn-primary"
+            type="submit"
+            disabled={userEmail === 'guest@gmail.com' || isLoading}
+          >
             {isLoading ? (
               <LoadingIcons.ThreeDots height="0.5rem" />
             ) : dialogMode === 'ADD' ? (
@@ -339,7 +356,12 @@ const AddProduct = ({ dialogMode, onClose, id }) => {
               'Edit Product'
             )}
           </button>
-          <button className="--btn" type="button" onClick={onClose}>
+          <button
+            className="--btn"
+            type="button"
+            onClick={onClose}
+            disabled={userEmail === 'guest@gmail.com'}
+          >
             Cancel
           </button>
         </div>
