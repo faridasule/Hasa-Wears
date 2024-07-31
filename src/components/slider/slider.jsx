@@ -53,7 +53,7 @@ const Slider = () => {
                   <p style={{color: '#FFCC00', fontWeight: '400', fontSize: '36px', lineHeight: '46px'}}>Hot Sales!</p>
                   <h2>{heading}</h2>
                   <p>{desc}</p>
-                  <a href="#product" style={{backgroundColor: '#005EB2', display:'flex', gap: '1rem', padding: '1rem 5rem', marginTop: '3rem'}} className="--btn --btn-primary">
+                  <a href="/#product" style={{backgroundColor: '#005EB2', display:'flex', gap: '1rem', padding: '1rem 5rem', marginTop: '3rem', cursor: 'pointer'}} className="--btn --btn-primary">
                     <MdShoppingCart size={25}/> <span>Shop Now</span>
                   </a>
                 </div>
