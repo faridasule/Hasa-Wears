@@ -121,7 +121,7 @@ const Login = () => {
               }}
             >
               <FcGoogle size={24} />
-              <span style={{ color: '#252C32', fontSize: '10px' }}>
+              <span style={{ color: '#252C32', fontSize: '16px' }}>
                 Sign in With Google
               </span>
             </button>

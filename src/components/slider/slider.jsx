@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { sliderData } from "./slider-utils";
 import "./slider.scss";
 import { MdShoppingCart } from "react-icons/md";
 import { IoMdArrowRoundForward} from "react-icons/io";
 import { IoArrowBackOutline } from "react-icons/io5";
 
-
-
 const Slider = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const slideLength = sliderData.length;
-
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideLength = sliderData.length;
   const autoScroll = true;
   let slideInterval;
   let intervalTime = 3000;
@@ -28,7 +24,6 @@ const Slider = () => {
     setCurrentSlide(0);
   }, []);
 
-
   useEffect(() => {
     if (autoScroll) {
       const auto = () => {
@@ -37,7 +32,7 @@ const Slider = () => {
       auto();
     }
     return () => clearInterval(slideInterval);
-  }, [currentSlide, slideInterval, autoScroll]);
+  }, [currentSlide, autoScroll]);
 
   return (
     <div className="slider">
@@ -68,7 +63,7 @@ const Slider = () => {
         );
       })}
     </div>
-  )
+  );
 }
 
-export default Slider
+export default Slider;
